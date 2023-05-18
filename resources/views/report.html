@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Report Card</title>
+	<style type="text/css">
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			padding: 8px;
+			text-align: center;
+			border: 1px solid black;
+		}
+		th {
+			background-color: #ddd;
+		}
+	</style>
+</head>
+<body>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                @foreach($subjects as $subject)
+                                    <th>{{$subject->name}}</th>
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($students as $student)
+                                <tr>
+                                    <td>{{$student->surname}} {{$student->othername}}</td>
+                                    @foreach($subjects as $subject)
+                                        <td>
+                                            @php
+                                                $class_score = $student->class_scores()->where('level_id', $level->id)->where('exam_id', $exam->id)->where('subject_id', $subject->id)->first();
+                                                $exam_score = $student->exam_scores()->where('level_id', $level->id)->where('exam_id', $exam->id)->where('subject_id', $subject->id)->first();
+                                                $score = $class_score ? $class_score->score : '';
+                                                $score .= $exam_score ? ' / '.$exam_score->score : '';
+                                            @endphp
+                                            {{$score}}
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+
+</body>
+</html>

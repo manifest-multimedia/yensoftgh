@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar</title>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale-all.min.js'></script>
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+</head>
+<body>
+    <div id='calendar'></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                navLinks: true,
+                editable: true,
+                eventLimit: true,
+                events: '/calendar/events',
+                selectable: true,
+                selectHelper: true,
+                select: function(info) {
+                    var title = prompt('Event Title:');
+                    var start = moment(info.start).format("YYYY-MM-DD HH:mm:ss");
+                    var end = moment(info.end).format("YYYY-MM-DD HH:mm:ss");
+                    if (title) {
+                        $.ajax({
+                            url: '/calendar/store',
+                            type: "POST",
+                            data: {title:title, start_time:start, end_time:end, _token: '{{ csrf_token() }}'},
+                            success: function(response) {
+                                calendar.refetchEvents();
+                            }
+                        })
+                    }
+                },
+                eventDrop: function(info) {
+                    var start = moment(info.event.start).format('YYYY-MM-DD HH:mm:ss');
+                    var end = moment(info.event.end).format('YYYY-MM-DD HH:mm:ss');
+                    $.ajax({
+                        url: '/calendar/update',
+                        type: "POST",
+                        data: {id: info.event.id, title: info.event.title, start_time: start, end_time: end, _token: '{{ csrf_token() }}'},
+                        success: function(response) {
+                            calendar.refetchEvents();
+                        }
+                    })
+                },
+                eventClick: function(info) {
+                    var deleteMsg = confirm("Do you really want to delete this event?");
+                    if (deleteMsg) {
+                        $.ajax({
+                            url: '/calendar/destroy/'+info.event.id,
+                            type: "DELETE",
+                            data: {_token: '{{ csrf_token() }}'},
+                            success: function(response) {
+                                calendar.refetchEvents();
+                            }
+                        })
+                    }
+                },
+                eventResize: function(info) {
+                    var start = moment(info.event.start).format('YYYY-MM-DD HH:mm:ss');
+                    var end = moment(info.event.end).format('YYYY-MM-DD HH:mm:ss');
+                    $.ajax({
+                        url: '/calendar/update',
+                        type: "POST",
+                        data: {id: info.event.id, title: info.event.title, start_time: start, end_time: end, _token: '{{ csrf_token() }}'},
+                        success: function(response) {
+                            calendar.refetchEvents();
+                        }
+                    })
+                },
+            });
+            calendar.render();
+
+        });
+    </script>
+</body>
+</html>
