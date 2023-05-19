@@ -21,7 +21,7 @@
         </div>
         <!--student name and image-->
             <div class="" style="display: flex; justify-content: center; align-items: center;">
-                <img src="{{(asset($student->photo))}}" alt="logo" style="height: 100px; background: #ddd; border-radius: 50%;">
+                <img src="{{ url('storage/app/photo/' . $student->photo) }}" alt="logo" style="height: 100px; background: #ddd; border-radius: 50%;">
             </div>
             <br>
             <h3 style="text-align: center">{{ $student->surname }} {{ $student->othername }}</h3>

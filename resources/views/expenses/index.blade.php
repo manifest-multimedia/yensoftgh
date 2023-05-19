@@ -14,8 +14,10 @@
                 <a href="#" class="button-green" style="text-decoration: none; padding-left: 10px; padding-right: 12px; padding-top: 5px" onclick="printContent();"><span class="material-icons-outlined">print</span> Print</a>
             </div>
             <div class="fields">
+
                 <form action="{{ route('expenses.index') }}" method="GET">
                 <div class="query">
+                    <a href="{{route('expenses.create')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">add</span>  Record Expense</a>
                     <div class="input-field">
                         <label for="term_id">Term</label>
                         <select class="custom-select" id="term_id" name="term_id">
@@ -46,9 +48,6 @@
                     <div>
                         <button type="submit" class="text-btn">Search</button>
                     </div>
-
-                    <a href="{{route('expenses.create')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">add</span>  Record Expense</a>
-
                 </div>
                 </form>
             </div>

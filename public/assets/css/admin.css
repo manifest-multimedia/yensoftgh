@@ -156,7 +156,7 @@ body {
     font-size: 25px;
     font-weight: 500;
     align-items: center;
-    
+
 }
 .logo {
 	display: flex;
@@ -167,7 +167,7 @@ body {
     margin-top: 10px;
     font-weight: bold;
     font-size: 18px;
-	color: rgb(109, 176, 243);
+	color: #296EB4;
   }
 
 .sidebar-brand > .material-icons-outlined {

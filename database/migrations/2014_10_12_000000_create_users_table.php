@@ -19,7 +19,8 @@ return new class extends Migration
             $table->tinyInteger('role')->default(4); //admin=1, teacher-2, guardian-3, user-4
             $table->tinyInteger('status')->default(1); //active=1, disabled=2
             $table->string('password');
-            $table->foreign('level_id')->references('level_id')->on('levels');
+            $table->unsignedBigInteger('level_id')->nullable();
+            $table->foreign('level_id')->references('id')->on('levels');
             $table->rememberToken();
             $table->timestamps();
         });

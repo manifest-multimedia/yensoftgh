@@ -92,7 +92,7 @@
 
                     <div class="top" style="display: flex; justify-content: center;">
                         <button type="submit" >Save Attendance</button> &nbsp;
-                        <a href="{{ route('teacher') }}" class="text_btn_outlined">Cancel</a>
+                        <a href="{{ route('teacher') }}" class="text_btn_outlined">Close</a>
                     </div>
                 </form>
             </div>
