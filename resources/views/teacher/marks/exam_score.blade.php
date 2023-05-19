@@ -81,7 +81,7 @@
                     <br>
 
                     <div style="display: flex; justify-content: center;">
-                        <button type="submit" class="text-btn">Save Scores</button>&nbsp;
+                        <button type="submit" class="text-btn">Save Scores</button>&nbsp;123
 
                         <a href="{{ route('marks.index') }}" class="text_btn_outlined">Close</a>
                     </div>

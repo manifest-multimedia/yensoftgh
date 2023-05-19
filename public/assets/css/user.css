@@ -45,6 +45,7 @@ body {
     padding: 10px;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 50px;
 }
 
 .section1{
@@ -393,7 +394,7 @@ main {
       border: 1px solid #ccc;
       border-radius: 4px;
       color: rgb(34, 63, 63);
-  
+
     }
 
 
@@ -451,7 +452,7 @@ main {
     .text-btn {
         background: linear-gradient(264.46deg, #132F7C -0.26%, #536DFE 98.84%);
         color: white;
-        padding: 10px 15px;
+        padding: 10px 20px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -467,7 +468,7 @@ main {
         .text-btn-green {
             background: linear-gradient(264.46deg, #4d7c13 -0.26%, #265416 98.84%);
             color: white;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -482,7 +483,7 @@ main {
 
     .text_btn_outlined {
         color: #707070;
-        padding: 10px 15px;
+        padding: 10px 20px;
         border: solid 1px;
         border-color: #898585;
         border-radius: 5px;

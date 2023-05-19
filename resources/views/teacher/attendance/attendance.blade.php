@@ -46,7 +46,7 @@
                         <br>
                 </div>
                     <div style="display: flex; justify-content: center;">
-                        <button type="submit">Get Attendance</button> &nbsp;
+                        <button type="submit">Generate</button> &nbsp;
                         <a href="{{route('get_attendance.index')}}" class="text_btn_outlined">Close</a>
                     </div>
             </div>

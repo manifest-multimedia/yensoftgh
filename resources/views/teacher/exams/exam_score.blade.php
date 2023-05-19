@@ -89,10 +89,9 @@
                     </div>
                 </form>
                 </div>
-            </section>
-
+            </div>
         </div>
-    </main>
+    </div>
 @endsection
 
 @section('scripts')
