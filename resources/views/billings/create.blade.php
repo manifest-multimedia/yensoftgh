@@ -70,7 +70,7 @@
 
                                     <div class="input-field">
                                         <label for="">Academic Year</label>
-                                        <select id="" class="@error('term') is-invalid @enderror" name="" required>
+                                        <select id="academic_year_id" class="@error('term') is-invalid @enderror" name="academic_year_id" required>
                                             <option value="">Select Academic Year</option>
                                             @foreach ($academic_years as $academic_year)
                                                 <option value="{{ $academic_year->id }}">{{ $academic_year->name }}</option>

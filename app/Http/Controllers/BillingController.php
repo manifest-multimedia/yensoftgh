@@ -52,6 +52,7 @@ class BillingController extends Controller
     $description = $request->input('description');
     $user_id = $request->input('user_id');
     $term = $request->input('term');
+    $academic_year = $request->input('academic_year_id');
 
 
     foreach ($students as $student_id) {
@@ -62,6 +63,7 @@ class BillingController extends Controller
         $billing->description = $description;
         $billing->term = $term;
         $billing->user_id = $user_id;
+        $billing->academic_year_id = $academic_year;
 
             $billing->save();
         }

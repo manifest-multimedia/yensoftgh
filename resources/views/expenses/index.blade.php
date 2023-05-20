@@ -67,6 +67,7 @@
                         <th>Serial Number</th>
                         <th>Term</th>
                         <th>Year</th>
+                        <th>Category</th>
                         <th>Description</th>
                         <th>Amount</th>
                         <th>Actions</th>
@@ -80,8 +81,9 @@
                                 <td>{{ $expense->serial_no }}</td>
                                 <td>{{ $expense->term_id }}</td>
                                 <td>{{ $expense->academic_year_id }}</td>
-                                <td>{{ $expense->amount }}</td>
+                                <td>{{ $expense->category == 1?'Capital Expense' : ($expense->category == 2 ? 'Drawings' : 'Operating Expense')}}</td>
                                 <td>{{ $expense->description }}</td>
+                                <td>{{ $expense->amount }}</td>
                                 <td>
                                 <div class="table-action">
                                     <a href="{{route('expenses.edit', $expense->id)}}"><span class="material-icons-outlined">edit</span></a>&nbsp;&nbsp;

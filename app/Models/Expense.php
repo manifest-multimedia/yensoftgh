@@ -15,6 +15,7 @@ class Expense extends Model
         'term_id',
         'academic_year_id',
         'payment_date',
+        'category',
         'description',
         'amount',
     ];

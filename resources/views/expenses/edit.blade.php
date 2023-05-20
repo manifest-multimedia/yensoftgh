@@ -58,6 +58,16 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="card-input">
+                        <label for="category">Expense Category</label>
+                        <select id="category" class="@error('category') is-invalid @enderror" name="category" required>
+                                <option value="{{ $expense->category }}">{{ $expense->category == 1?'Capital Expense' : ($expense->category == 2 ? 'Drawings' : 'Operating Expense')}}</option>
+
+                                <option value="1">Capital Expense</option>
+                                <option value="2">Drawings</option>
+                                <option value="3">Operating Expense</option>
+                        </select>
+                    </div>
 
                     <div class="card-input">
                         <label for="">Amount</label>

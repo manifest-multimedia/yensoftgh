@@ -63,7 +63,7 @@ class ExpenseController extends Controller
 
         Expense::create($input);
 
-        return redirect()->route('expenses.index')->with('success', 'New expenditure created successfully.')->with('display_time', 3);
+        return redirect()->route('expenses.index')->with('success', 'New expense added successfully.')->with('display_time', 3);
 
     }
 
@@ -101,6 +101,7 @@ class ExpenseController extends Controller
         $expense->academic_year_id = $request->academic_year_id;
         $expense->payment_date = $request->payment_date;
         $expense->description = $request->description;
+        $expense->category = $request->category;
         $expense->amount = $request->amount;
         $expense->save();
 

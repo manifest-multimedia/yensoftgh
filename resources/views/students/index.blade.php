@@ -46,9 +46,6 @@
             <div class="big-card">
                 <div class="card-title">
                     <h3 class="-">List of students</h3>
-
-
-
                 </div>
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>

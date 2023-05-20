@@ -50,6 +50,15 @@
                                     </select>
                                 </div>
                                 <div class="card-input">
+                                    <label for="category">Expense Category</label>
+                                    <select id="category" class="@error('category') is-invalid @enderror" name="category" required>
+                                            <option value="">Select category</option>
+                                            <option value="1">Capital Expense</option>
+                                            <option value="2">Drawings</option>
+                                            <option value="3">Operating Expense</option>
+                                    </select>
+                                </div>
+                                <div class="card-input">
                                     <label for="amount">Amount</label>
                                     <input type="number" name="amount" id="amount" placeholder="e.g. 200" required>
                                 </div>

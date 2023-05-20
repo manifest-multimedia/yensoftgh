@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('term_id')->constrained();
             $table->foreignId('academic_year_id')->constrained();
             $table->date('payment_date')->notNull();
+            $table->string('category')->notNull();
             $table->string('description')->notNull();
             $table->decimal('amount', 10, 2)->notNull();
             $table->timestamps();

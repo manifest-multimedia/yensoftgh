@@ -49,6 +49,11 @@ class PaymentController extends Controller
             'mode' => 'required',
         ]);
 
+        // Calculate Balance on account
+        $totalBills = Billing::where('student_id', $request->input('student_id'))->sum('amount');
+        $totalPay = Payment::where('student_id', $request->input('student_id'))->sum('amount');
+        $Balance = $totalBills - $totalPay;
+//dd($Balance);
         // Generate serial number
         $lastPayment = Payment::orderBy('payment_id', 'desc')->first();
         $serialNumber = 'PMT00001';
@@ -79,7 +84,7 @@ class PaymentController extends Controller
         $totalPayments = Payment::where('student_id', $request->input('student_id'))->sum('amount');
         $totalDue = $totalBillings - $totalPayments;
 
-        if ($amountPaid >= $totalDue) {
+        if ($amountPaid >= $Balance) {
             // Fully paid
             $billing->status = 3;
         } else if ($amountPaid > 0 ) {
@@ -101,7 +106,7 @@ class PaymentController extends Controller
         $schoolSettings = SchoolSettings::first();
 
         // Generate receipt HTML with payment and school settings data
-        $receiptHtml = view('receipt', ['payment' => $payment, 'billing' => $billing, 'totalDue' => $totalDue, 'schoolSettings' => $schoolSettings])->render();
+        $receiptHtml = view('receipt', ['payment' => $payment,'Balance' =>$Balance, 'billing' => $billing, 'totalDue' => $totalDue, 'schoolSettings' => $schoolSettings])->render();
 
         // Return receipt HTML as response
         return response($receiptHtml)

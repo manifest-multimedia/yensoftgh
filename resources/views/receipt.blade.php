@@ -23,7 +23,7 @@
 		}
 
 		.heading {
-			font-size: 28px;
+			font-size: 20px;
 			font-weight: bold;
 			margin-bottom: 50px;
 			text-align: center;
@@ -70,6 +70,10 @@
 			text-align: center;
 		}
 
+        br{
+            border-top: solid 1px;
+        }
+
         /* hide print button on printed receipt */
         @media print {
             .print-btn {
@@ -82,49 +86,34 @@
 <body>
 	<div class="container">
 
-		<h3 class="" style="text-align: center;">{{ $schoolSettings->school_name }}</h3>
-        <p style="text-align: center;">{{ $payment->schoolSettings()->school_address }}, {{ $payment->schoolSettings()->school_phone }}, {{ $payment->schoolSettings()->school_city }}</>
-
-
-		<div class="heading">
-            Fee Payment Receipt
-            <br> # {{ $payment->serial_number }}
+		<h3 class="" style="text-align: center;">{{ $schoolSettings->school_name }}<br>
+        {{ $payment->schoolSettings()->school_address }},
+        {{ $payment->schoolSettings()->school_phone }}, {{ $payment->schoolSettings()->school_city }}
+        <br>
+        Payment Receipt
+        </h3>
+        <hr>
+        <div>
+            Receipt No.: <strong>{{ $payment->serial_number }}</strong><br>
+            Date: <strong>{{ $payment->payment_date }}</strong> <br>
+            Received By: <strong>{{ $payment->user->name }} ({{ $payment->user->role == 1 ? 'Admin' : ($payment->user->role == 2 ? 'Teacher' : ($payment->user->role == 3 ? 'Parent' : 'User')) }})</strong>
         </div>
-		<div class="row">
-			<div class="col">
-				<div class="label">Student ID:</div>
-				<div class="value">{{ $payment->student->serial_id }}</div>
-			</div>
-			<div class="col">
-				<div class="label">Date:</div>
-				<div class="value">{{ $payment->payment_date }}</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<div class="label">Student Name:</div>
-				<div class="value">{{ $payment->student->surname }} {{ $payment->student->othername }}</div>
-			</div>
-			<div class="col">
-                <div class="label">Amount:</div>
-                <div class="value">{{ $payment->amount }}</div>
-            </div>
-		</div>
-		<div class="row">
-            <div class="col">
-				<div class="label">Class:</div>
-				<div class="value">{{ $payment->student->level->name }} ({{ $payment->student->level->abbre }})</div>
-			</div>
-
-			<div class="col">
-				<div class="label">Description:</div>
-				<div class="value"> Being pay for {{ $payment->term == 1 ? 'First Term' : ($payment->term == 2 ? 'Second Term' : 'Third Term') }} {{ $payment->description }}</div>
-            </div>
-		</div>
-		<div class="total">Amount Paid: {{ $payment->amount }} <br> Balance: {{  $totalDue }}</div>
-        <p><strong>Received By:</strong> {{ $payment->user->name }} ({{ $payment->user->role == 1 ? 'Admin' : ($payment->user->role == 2 ? 'Teacher' : ($payment->user->role == 3 ? 'Parent' : 'User')) }})</p>
-
-		<div class="footer">Thank you for your payment. Keep this receipt safe.</div>
+        <hr>
+        <div>
+            Student ID: <strong>{{ $payment->student->serial_id }}</strong><br>
+            Student Name: <strong>{{ $payment->student->surname }} {{ $payment->student->othername }}</strong><br>
+            Class: <strong>{{ $payment->student->level->name }} ({{ $payment->student->level->abbre }})</strong> <br>
+        </div>
+        <hr>
+        <div>
+            Term: <strong>{{ $payment->term == 1 ? 'First Term' : ($payment->term == 2 ? 'Second Term' : 'Third Term') }}</strong><br>
+            Description: <strong>{{ $payment->description }}</strong><br>
+            Balance Bf: <strong>GH₵ {{ $Balance }}.00</strong><br>
+            Received Amount: <strong>GH₵ {{ $payment->amount }}.00</strong><br>
+            Balance Cf: <strong>GH₵ {{  $Balance - $payment->amount}}.00</strong><br>
+        </div>
+        <hr>
+        <div class="footer">Thank you for your payment. <br> Keep this receipt safe.<br>www.yensoftgh.com</div>
 	</div>
 
     <!-- print button -->

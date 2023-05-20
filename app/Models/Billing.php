@@ -35,6 +35,7 @@ class Billing extends Model
         'billing_date',
         'amount',
         'description',
+        'academic_year_id',
     ];
 
     public function student()

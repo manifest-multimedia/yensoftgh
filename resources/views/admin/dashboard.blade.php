@@ -30,14 +30,14 @@
                 </div>
                 <div class="card">
                     <div class="card-inner">
-                        <h3>Billings</h3>
+                        <h3>Budgeted</h3>
                         <span class="material-icons-outlined">sell</span>
                     </div>
                     <h2>{{ $total_billings_amount }}</h2>
                 </div>
                 <div class="card">
                     <div class="card-inner">
-                        <h3>Fees Paid</h3>
+                        <h3>Actual Collection</h3>
                         <span class="material-icons-outlined">history_edu</span>
                     </div>
                     <h2>{{ $total_payments_amount }}</h2>
