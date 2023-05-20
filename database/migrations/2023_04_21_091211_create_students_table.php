@@ -32,7 +32,6 @@ return new class extends Migration
             $table->unsignedInteger('level_id')->nullable();
             $table->unsignedBigInteger('status')->default(1); //1-active 3-withdrawn 2-graduate
             $table->timestamps();
-
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('set null');
             $table->foreign('lastclass')->references('id')->on('levels')->onDelete('set null');
         });
