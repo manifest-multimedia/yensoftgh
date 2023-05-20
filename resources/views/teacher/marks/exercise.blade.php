@@ -103,12 +103,13 @@
                     <div style="display: flex; justify-content: center;">
                         <button type="submit" class="text-btn">Save Scores</button>&nbsp;
 
-                        <a href="{{ route('marks.index') }}" class="text_btn_outlined">Cancel</a>
+                        <a href="{{ route('marks.index') }}" class="text_btn_outlined">Close</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+<div>
 @endsection
 
 @section('scripts')

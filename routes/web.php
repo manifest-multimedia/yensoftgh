@@ -113,8 +113,7 @@ Route::middleware('auth')->group(function () {
 
         //Attendance Routes
         Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-        Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
-        Route::post('/attendance', [AttendanceController::class, 'getAttendance'])->name('attendance.get');
+        Route::post('attendance/store', [AttendanceController::class, 'store'])->name('store.attendance');
 
         //Settings Routes
         Route::get('/school/settings', [SchoolController::class, 'showSettingsForm'])->name('school.settings.form');
@@ -190,7 +189,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/get-basic-salary/{staff_id}', [StaffTaxController::class, 'getBasicSalary']);
         Route::get('/payrolls/get-staff-data', [PayrollController::class, 'getStaffData'])->name('payrolls.getStaffData');
 
-        //balances 
+        //balances
         Route::get('/student-balances', [StudentsController::class, 'showStudentBalances'])->name('student-balances');
 
         //Messages

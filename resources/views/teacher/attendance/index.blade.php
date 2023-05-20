@@ -59,8 +59,9 @@
                         </div>
                     </div>
 
+                    <br>
                     <label for="students">Students</label>
-                    <br><br>
+                    <br>
 
                     <table class="table">
                         <thead>
@@ -91,8 +92,8 @@
                     <br>
 
                     <div class="top" style="display: flex; justify-content: center;">
-                        <button type="submit" >Save Attendance</button> &nbsp;
-                        <a href="{{ route('teacher') }}" class="text_btn_outlined">Cancel</a>
+                        <button type="submit" >Record</button> &nbsp;
+                        <a href="{{ route('teacher') }}" class="text_btn_outlined">Close</a>
                     </div>
                 </form>
             </div>

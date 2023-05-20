@@ -23,7 +23,19 @@ class AuthServiceProvider extends ServiceProvider
     {
         
         Gate::define('admin',function(){
-            
+
+        });
+
+        Gate::define('teacher',function(){
+
+        });
+
+        Gate::define('parent',function(){
+
+        });
+
+        Gate::define('staff',function(){
+
         });
 
 

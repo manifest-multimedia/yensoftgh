@@ -136,15 +136,15 @@
                     <tr>
                         <td style="text-align: left;">Age</td>
                         <td style="text-align: left;">{{ $reportCard['age'] }} years</td>
-                        <td style="text-align: left;">Term end</td>
-                        <td style="text-align: left;">{{ $reportCard['term_end'] }}</td>
+                        <td style="text-align: left;">Term begun</td>
+                        <td style="text-align: left;">{{ $reportCard['term_start'] }}</td>
                     </tr>
 
                     <tr>
                         <td style="text-align: left;">Class</td>
                         <td style="text-align: left;">{{ $reportCard['level_name'] }}</td>
-                        <td style="text-align: left;">Next term begins</td>
-                        <td style="text-align: left;">{{ $reportCard['academic_year'] }}</td>
+                        <td style="text-align: left;">Term closed</td>
+                        <td style="text-align: left;">{{ $reportCard['term_end'] }}</td>
                     </tr>
 
                 </tbody>
@@ -214,9 +214,9 @@
                     document.addEventListener("DOMContentLoaded", function(){
 
                     var chart_id ='chart-'+{{ $reportCard['student_id'] }};
-                
+
                     var ctx = document.getElementById(chart_id).getContext('2d');
-                            
+
                             var data = {
                             labels: [
                                 @foreach ($reportCard['subjects'] as $subject)
@@ -235,7 +235,7 @@
                                 borderWidth: 1
                             }]
                             };
-                        
+
                             var options = {
                             responsive: true,
                             maintainAspectRatio: false,
@@ -247,16 +247,16 @@
                                 }]
                             }
                             };
-                        
+
                             var chart = new Chart(ctx, {
                             type: 'bar',
                             data: data,
                             options: options
                             });
-                        
+
                 })
-                            
-                
+
+
             </script>
 
 

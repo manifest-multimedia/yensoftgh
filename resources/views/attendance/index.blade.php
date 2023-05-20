@@ -27,7 +27,7 @@
 
             <section class="">
 
-                <form method="POST" action="{{ route('attendance.store') }}">
+                <form method="POST" action="{{ route('store.attendance') }}">
                     @csrf
                 <div class="form flex">
                         <div class="form ">
