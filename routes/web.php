@@ -28,7 +28,7 @@ use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\MessageController;
-use App\Models\Attendance;
+use App\Http\Controllers\PromotionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +118,10 @@ Route::middleware('auth')->group(function () {
         //Settings Routes
         Route::get('/school/settings', [SchoolController::class, 'showSettingsForm'])->name('school.settings.form');
         Route::put('/school/settings', [SchoolController::class, 'saveSettings'])->name('school.settings.update');
+
+        //Promotions
+        Route::get('promotion', [PromotionController::class, 'index'])->name('promotion.index');
+        Route::post('promotion/promote', [PromotionController::class, 'promote'])->name('promotion.promote');
 
         //Calendar
         Route::get('/calendar', [CalendarController::class, 'index']);

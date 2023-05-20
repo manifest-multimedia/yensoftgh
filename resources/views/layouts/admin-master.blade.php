@@ -79,6 +79,7 @@
                 <li class="sidebar-list-item"><a href="{{ route('staff.index') }}"><span class="material-icons-outlined">badge</span> Manage Staff</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('messages.index') }}"><span class="material-icons-outlined">message</span> Messages</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('users.index') }}"><span class="material-icons-outlined">group</span> User Management</a></li>
+                <li class="sidebar-list-item"><a href="{{ route('promotion.index') }}"><span class="material-icons-outlined">swap_horiz</span> Student Promotion</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('school.settings.form') }}"><span class="material-icons-outlined">settings</span> School Settings</a></li>
             </ul>
             <ul class="sidebar-list logout">
