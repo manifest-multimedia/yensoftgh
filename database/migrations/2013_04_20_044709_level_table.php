@@ -14,12 +14,18 @@ return new class extends Migration
         Schema::dropIfExists('levels');
 
         Schema::create('levels', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id')->nullable();
             $table->string('abbre'); //BS1
             $table->string('name'); //Basic One
             $table->unsignedBigInteger('department_id')->nullable();
             $table->timestamps();
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('restrict');
+        });
+
+        Schema::table('levels', function (Blueprint $table) {
+            $table->foreign('department_id')
+                  ->references('id')
+                  ->on('departments')
+                  ->onDelete('restrict');
         });
     }
 

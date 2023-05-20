@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('status')->default(2); //1 - present, 2- absent
             $table->unsignedBigInteger('term_id');
             $table->unsignedBigInteger('academic_year_id');
-            $table->unsignedBigInteger('level_id');
+            $table->unsignedInteger('level_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

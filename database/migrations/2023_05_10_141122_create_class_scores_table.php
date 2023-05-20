@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('class_scores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('level_id');
+            $table->unsignedInteger('level_id')->nullable();
             $table->unsignedBigInteger('exam_id');
             $table->unsignedBigInteger('subject_id');
             $table->integer('score');

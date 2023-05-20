@@ -28,13 +28,13 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('lastschool')->nullable();
             $table->string('photo')->nullable();
-            $table->unsignedBigInteger('lastclass')->nullable();
-            $table->unsignedBigInteger('level_id')->nullable();
+            $table->unsignedInteger('lastclass')->nullable();
+            $table->unsignedInteger('level_id')->nullable();
             $table->unsignedBigInteger('status')->default(1); //1-active 3-withdrawn 2-graduate
             $table->timestamps();
 
-            $table->foreign('lastclass')->references('id')->on('levels')->onDelete('set null');
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('set null');
+            $table->foreign('lastclass')->references('id')->on('levels')->onDelete('set null');
         });
 
     }
