@@ -86,14 +86,15 @@
                             </div>
                             <br>
 
-                                <label for="students">Students</label>
-                                <br><br>
+                            <div class="input-field">
+                            <label for="students" class="input-field">Students</label></div>
+                            <br>
+                            <div id="students">
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Surname</th>
-                                            <th>Othername</th>
+                                            <th>Name</th>
                                             <th>Score</th>
                                         </tr>
                                     </thead>
@@ -101,6 +102,7 @@
                                         <!-- Students list will be loaded here -->
                                     </tbody>
                                 </table>
+                            </div>
                                 <br>
 
                             <div style="display: flex; justify-content: center;">
@@ -109,7 +111,6 @@
                                 <a href="{{ route('exercises.index') }}" class="text-btn-outlined">Cancel</a>
 
                             </div>
-
 
                     </form>
                 </div>
@@ -126,44 +127,46 @@
     <script src="{{(asset('assets/js/script.js'))}}"></script>
 
     <script>
-    function getStudents(){
-        // When a level is selected, load the students for that level
-        const levelSelect = document.querySelector('#level_id');
-        const studentsContainer = document.querySelector('#students-container');
-        levelSelect.addEventListener('change', function() {
-            const levelId = this.value;
-            if (levelId) {
-                const students = @json($students);
-                const filteredStudents = students.filter(s => s.level_id == levelId);
-                const studentsHtml = filteredStudents.map(s => `
-                    <tr>
-                        <td>${s.serial_id}</td>
-                        <td>${s.surname}</td>
-                        <td>${s.othername}</td>
-                        <td>
-                            <input type="number" step="0.01" name="score[]" class="form-control" required>
-                            <input type="hidden" name="student_id[]" value="${s.id}">
-                        </td>
-                    </tr>
-                `).join('');
-                studentsContainer.innerHTML = studentsHtml;
-            } else {
-                studentsContainer.innerHTML = 'No Students';
-            }
-        });
-    }
+        function getStudents() {
+            var level_id = document.getElementById("level_id").value;
+            var url = "{{ route('get-students', ':level_id') }}".replace(':level_id', level_id);
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var students = data.students;
+                    var html = '';
+
+                    for (var i = 0; i < students.length; i++) {
+                        html += '<tr>';
+                        html += '<td>' + students[i].serial_id + '</td>';
+                        html += '<td>' + students[i].surname + '&nbsp;' + students[i].othername + '</td>';
+                        html += '<td>'+ '<input type="number" step="1" name="score[]" class="score_box" required>' + '</td=>';
+                        html += '<input hidden type="text" name="student_id[]" class="score_box" required value = "'+ students[i].id + '" >';
+                        html += '</tr>';
+                    }
+
+                    var tableBody = document.querySelector("#students tbody");
+                    tableBody.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error(error);
+                    // handle error here, e.g. display an error message to the user
+                });
+        }
     </script>
+
 
     <script>
         // Find the success alert and set a timeout to hide it
         var successAlert = document.querySelector('.alert-success');
-        if (successAlert) {
-            var displayTime = {{ session('display_time') ?? 0 }};
-            if (displayTime > 0) {
-                setTimeout(function() {
-                    successAlert.style.display = 'none';
-                }, displayTime * 1000);
-            }
+            if (successAlert) {
+                var displayTime = {{ session('display_time') ?? 0 }};
+                if (displayTime > 0) {
+                    setTimeout(function() {
+                        successAlert.style.display = 'none';
+                    }, displayTime * 1000);
+                }
         }
     </script>
 

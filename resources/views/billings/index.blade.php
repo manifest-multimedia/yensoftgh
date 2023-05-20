@@ -19,7 +19,7 @@
                     <a href="{{route('billings.create')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">add</span>  Add New Fees</a>
                     <a href="{{route('payments.index')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">credit_card</span>  See Paid Fees</a>
                     <a href="{{route('expenses.index')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">inventory</span>  Expenditures</a>
-                    <a href="{{route('student-balances')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">inventory</span>  Get Debtors</a>
+                    <a href="{{route('student-balances')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">balance</span>  Get Debtors</a>
 
                 </div>
                 </form>
@@ -60,7 +60,7 @@
                             <td>{{$billing->description}}</td>
                             <td>{{$billing->amount}}</td>
                             <td><span class="{{ $billing->status == 1 ? 'tag-red' : ($billing->status == 2 ? 'tag-yellow' : 'tag-green') }}">
-                                {{ $billing->status == 1 ? 'Pending' : ($billing->status == 2 ? 'Partial' : 'Paid') }}</span></td>
+                                {{ $billing->status == 1 ? 'Unpaid' : ($billing->status == 2 ? 'Partial' : 'Paid') }}</span></td>
 
                             <td>
                                 <div class="table-action">

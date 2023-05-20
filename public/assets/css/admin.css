@@ -348,6 +348,16 @@ body {
     padding-left: 10px;
 }
 
+.score_box{
+    background-color: red;
+    background-color: #ffffff;
+    max-width: 60px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: rgb(34, 63, 63);
+
+}
 .tag-red{
     background-color:#f62222;
     border-radius: 10px;

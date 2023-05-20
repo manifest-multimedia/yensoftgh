@@ -54,9 +54,7 @@
             </tbody>
             <tfoot>
                 <th colspan="6">
-                    <div class="table-action" style="display:flex; justify-content: space-between; margin-left: 30px; margin-right: 30px;">
-
-                        <a href="#"><span class="material-icons-outlined">edit</span></a>&nbsp;&nbsp;
+                    <div class="table-action" style="display:flex; justify-content: right; margin-left: 30px; margin-right: 30px;">
 
                         <div class="">
                         <form action="{{route('payments.destroy', $payment->payment_id)}}" method="POST" id="deleteBillForm">

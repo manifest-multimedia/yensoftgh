@@ -38,7 +38,7 @@ class BillingController extends Controller
 
     public function getStudents($level_id)
     {
-        $students = Students::where('level_id', $level_id)->get();
+        $students = Students::where('level_id', $level_id)->orderBy('surname')->get();
 
         return response()->json(['students' => $students]);
     }

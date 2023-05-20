@@ -86,7 +86,7 @@ class PaymentController extends Controller
             // Partially paid
             $billing->status = 2;
         } else {
-            // Pending
+            // Unpaid
             $billing->status = 1;
         }
         $billing->save();
@@ -114,16 +114,16 @@ class PaymentController extends Controller
     public function destroy($payment_id)
     {
         $payment = Payment::with(['student', 'billing'])->where('payment_id', $payment_id)->first();
-    
+
         // Retrieve the billing associated with the payment
         $billing = $payment->billing;
-    
+
         // Calculate the amount paid for the billing after deleting the payment
         $amountPaid = $billing->payments()->where('payment_id', '!=', $payment->payment_id)->sum('amount');
 
         // Calculate the total due for the billing
         $totalDue = $billing->amount - $amountPaid;
-    
+
         // Update the billing status based on the new amount paid
         if ($amountPaid >= $totalDue) {
             // Fully paid
@@ -132,16 +132,16 @@ class PaymentController extends Controller
             // Partially paid
             $billing->status = 2;
         } else {
-            // Pending
+            // Unpaid
             $billing->status = 1;
         }
-    
+
         // Save the updated billing status
         $billing->save();
-    
+
         // Delete the payment
         $payment->delete();
-    
+
         return redirect()->route('payments.index')->with('success', 'Payment deleted successfully.')->with('display_time', 3);
     }
 }

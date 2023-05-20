@@ -88,7 +88,7 @@ class StudentsController extends Controller
         $total_payment = $payments->sum('amount');
 
         // Calculate the total amount due
-        $total_due = $total_payment - $total_bill;
+        $total_due = $total_bill - $total_payment;
 
         // Format the currency values
         $total_bill_formatted = 'GH₵ ' . number_format($total_bill, 2);
@@ -185,7 +185,7 @@ class StudentsController extends Controller
             $balance = $totalPayment - $totalBilling;
             $student->balance = $balance;
             return $balance < 0;
-        });            
+        });
         return view('students.balances', compact('students',));
     }
 

@@ -126,9 +126,9 @@
                         <td>{{ $total_bill_formatted }}</td>
                         <td>{{ $total_payment_formatted }}</td>
                         @if ($total_due < 0)
-                            <td style="color: red;">{{ $total_due_formatted }}</td>
-                        @elseif ($total_due > 0)
                             <td style="color: green;">{{ $total_due_formatted }}</td>
+                        @elseif ($total_due > 0)
+                            <td style="color: red;">{{ $total_due_formatted }}</td>
                         @else
                             <td>{{ $total_due_formatted }}</td>
                         @endif
@@ -181,7 +181,7 @@
                             <td>{{ $billing->amount }}</td>
                             <td>{{ $billing->description }}</td>
                             <td><span class="{{ $billing->status == 1 ? 'tag-red' : ($billing->status == 2 ? 'tag-yellow' : 'tag-green') }}">
-                                {{ $billing->status == 1 ? 'Pending' : ($billing->status == 2 ? 'Partial' : 'Paid') }}</span></td>
+                                {{ $billing->status == 1 ? 'Unpaid' : ($billing->status == 2 ? 'Partial' : 'Paid') }}</span></td>
                         </tr>
                         @endforeach
                     </tbody>

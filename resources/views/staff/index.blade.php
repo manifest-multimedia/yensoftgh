@@ -55,7 +55,8 @@
                             <td>{{$staff->first_name}} {{$staff->last_name}}</td>
                             <td>{{$staff->job_title}}</td>
                             <td>{{$staff->department->name}}</td>
-                            <td>{{$staff->phone_number}}</td>
+                            <td>{{$staff->gender == 1 ? 'Male' : 'Female' }}</td>
+
                             <td>
                                 <div class="table-action">
                                     <a href="{{route('staff.show', $staff->id)}}" lable="view"><span class="material-icons-outlined">account_box</span></a>&nbsp;&nbsp;
