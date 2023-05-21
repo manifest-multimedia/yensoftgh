@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ArchivedStudent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,5 +35,10 @@ class Levels extends Model
     public function examScores()
     {
         return $this->hasMany(ExamScore::class);
+    }
+
+    public function student()
+    {
+        return $this->hasMany(ArchivedStudent::class);
     }
 }

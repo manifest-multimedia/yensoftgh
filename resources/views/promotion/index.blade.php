@@ -75,7 +75,9 @@
 
                             <br>
                             <div style="display: flex; justify-content: center;">
-                                <button type="submit" class="text-btn">Promote</button>
+                                <button type="submit" class="text-btn">Promote</button>&nbsp;
+                                <a href="{{ route('academy') }}" class="text-btn-outlined">Cancel</a>
+
                             </div>
                 </form>
                 </div>

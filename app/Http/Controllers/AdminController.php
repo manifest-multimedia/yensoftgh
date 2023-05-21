@@ -137,10 +137,12 @@ class AdminController extends Controller
 
         $students_count = DB::table('students')->count();
         $active_students_count = DB::table('students')->where('status', '=', '1')->count();
-        $inactive_students_count = DB::table('students')->where('status', '=', '2')->count();
         $male_students_count = DB::table('students')->where('gender', '=', '1')->count();
         $female_students_count = DB::table('students')->where('gender', '=', '2')->count();
 
+        $inactive_students_count = DB::table('archived_students')->count();
+        $withdrawn = DB::table('archived_students')->where('status', '=', '3')->count();
+        $graduated = DB::table('archived_students')->where('status', '=', '2')->count();
 
         //Finance
         $total_billings_amount = DB::table('billings')->sum('amount');
@@ -151,7 +153,7 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('students', 'students_count',
         'active_students_count', 'inactive_students_count', 'male_students_count',
         'female_students_count','total_billings_amount', 'total_payments_amount',
-        'total_expenses_amount'));
+        'total_expenses_amount', 'withdrawn', 'graduated'));
     }
 
 }

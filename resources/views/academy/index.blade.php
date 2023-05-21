@@ -21,6 +21,7 @@
                     <a href="{{route('subjects.index')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">menu_book</span>  Subjects</a>
                     <a href="{{route('terms.index')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">date_range</span>  Terms</a>
                     <a href="{{ route('academic_years.index') }}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">calendar_month</span> Academic Years</a>
+                    <a href="{{ route('promotion.index') }}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">swap_horiz</span> Promotion</a>
 
                 </div>
                 </form>

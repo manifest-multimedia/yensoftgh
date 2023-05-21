@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\ClassScoreController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamScoreController;
@@ -135,6 +136,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/sms/create', [SmsController::class, 'create'])->name('sms.create');
         Route::post('/sms/send', [SmsController::class, 'send'])->name('sms.send');
 
+        //Archives
+        Route::get('/archived', [StudentsController::class, 'archived'])->name('archived');
+        Route::get('/archived/{id}', [ArchiveController::class, 'show'])->name('archived.show');
+        Route::get('/archive/{id}/edit', [ArchiveController::class, 'edit'])->name('archived.edit');
+        Route::put('/archive/{student}', [ArchiveController::class, 'update'])->name('archived.update');
 
         Route::get('admin', function () {
             return view('admin');

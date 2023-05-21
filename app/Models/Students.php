@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ArchivedStudent;
 use App\Models\ExamScore;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,38 @@ class Students extends Model
     {
 
         parent::boot();
+
+        static::updating(function ($student) {
+            // Check if the student status is changed to transferred or graduated
+            if ($student->isDirty('status') && in_array($student->status, [2, 3])) {
+                $archivedStudent = new ArchivedStudent();
+                $archivedStudent->student_id = $student->id;
+                $archivedStudent->serial_id = $student->serial_id;
+                $archivedStudent->surname = $student->surname;
+                $archivedStudent->othername = $student->othername;
+                $archivedStudent->gender = $student->gender;
+                $archivedStudent->dob = $student->dob;
+                $archivedStudent->nationality = $student->nationality;
+                $archivedStudent->religion = $student->religion;
+                $archivedStudent->hometown = $student->hometown;
+                $archivedStudent->district = $student->district;
+                $archivedStudent->region = $student->region;
+                $archivedStudent->parent_name = $student->parent_name;
+                $archivedStudent->phone = $student->phone;
+                $archivedStudent->address = $student->address;
+                $archivedStudent->lastschool = $student->lastclass;
+                $archivedStudent->photo = $student->photo;
+                $archivedStudent->level_id = $student->level_id;
+                $archivedStudent->lastclass = $student->lastclass;
+               // $archivedStudent->exemption = $student->exemption;
+                $archivedStudent->status = $student->status;
+
+                // Copy other relevant columns from the Student model
+
+                $archivedStudent->save();
+                $student->delete();
+            }
+        });
 
         static::creating(function ($student) {
             // Retrieve the prefix from the school_settings table
@@ -53,7 +86,7 @@ class Students extends Model
     }
     protected $fillable = [
 
-        'surname', 'othername','gender',
+        'id','surname', 'othername','gender',
         'dob', 'nationality', 'religion',
         'hometown','district','region',
         'parent_name', 'phone', 'address',

@@ -29,7 +29,7 @@
                             <div class="fields">
                                 <div class="card-input">
                                     <label for="payment_date">Date</label>
-                                    <input type="date" name="payment_date" id="payment_date" required>
+                                    <input type="date" name="payment_date" id="payment_date" value="<?php echo date('Y-m-d'); ?>" required>
                                 </div>
                                 <div class="card-input">
                                     <label for="term_id">Term</label>

@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('archived_students', function (Blueprint $table) {
+            $table->id();
+            // Include the 'id' column to preserve the original ID
+            $table->unsignedBigInteger('student_id')->nullable();
             $table->string('serial_id')->unique()->nullable();
             $table->string('surname');
             $table->string('othername');
@@ -24,14 +26,14 @@ return new class extends Migration
             $table->string('district')->nullable();
             $table->string('region')->nullable();
             $table->string('parent_name')->nullable();
-            $table->integer('phone')->nullable();
+            $table->bigInteger('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('lastschool')->nullable();
             $table->string('photo')->nullable();
             $table->unsignedInteger('lastclass')->nullable();
             $table->unsignedInteger('level_id')->nullable();
             $table->unsignedBigInteger('status')->default(1); //1-active, 2-graduate/past, 3-withdrawn/transfer
-            $table->unsignedBigInteger('exemption')->default(1); //1-none, 2-full 3-partial
+            $table->unsignedBigInteger('exemption')->default(1); //1-none, 2-full, 3-partial
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('set null');
             $table->foreign('lastclass')->references('id')->on('levels')->onDelete('set null');
             $table->timestamps();
@@ -45,6 +47,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('archived_students');
     }
 };

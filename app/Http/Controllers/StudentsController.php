@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArchivedStudent;
 use App\Models\Billing;
 use App\Models\Payment;
 use App\Models\Students;
@@ -134,25 +135,27 @@ class StudentsController extends Controller
             'level_id.required'=>'Please enter current class of student',
         ]);
 
-        $level = Students::findOrFail($id);
-        $level->surname = $request->surname;
-        $level->othername = $request->othername;
-        $level->gender = $request->gender;
-        $level->dob = $request->dob;
-        $level->nationality = $request->nationality;
-        $level->religion = $request->religion;
-        $level->hometown = $request->hometown;
-        $level->district = $request->district;
-        $level->region = $request->region;
-        $level->parent_name = $request->parent_name;
-        $level->phone = $request->phone;
-        $level->address = $request->address;
-        $level->lastschool = $request->lastschool;
-        $level->lastclass = $request->lastclass;
-        $level->level_id = $request->level_id;
-        $level->save();
+        $student = Students::findOrFail($id);
+        $student->surname = $request->surname;
+        $student->othername = $request->othername;
+        $student->gender = $request->gender;
+        $student->dob = $request->dob;
+        $student->nationality = $request->nationality;
+        $student->religion = $request->religion;
+        $student->hometown = $request->hometown;
+        $student->district = $request->district;
+        $student->region = $request->region;
+        $student->parent_name = $request->parent_name;
+        $student->phone = $request->phone;
+        $student->address = $request->address;
+        $student->lastschool = $request->lastschool;
+        $student->lastclass = $request->lastclass;
+        $student->level_id = $request->level_id;
+        $student->status = $request->status;
+       // $student->exemption = $request->exemption;
+        $student->save();
 
-        return redirect()->back()->with('success', 'Details updated successfully.')->with('display_time', 3);
+        return redirect()->route('students.index')->with('success', 'Student information updated successfully.')->with('display_time', 3);
 
     }
 
@@ -165,7 +168,7 @@ class StudentsController extends Controller
 
         $student->delete();
 
-        return redirect()->route('students.index');
+        return redirect()->route('students.index')->with('success', 'Student information deleted successfully.')->with('display_time', 3);
     }
 
     public function print()
@@ -189,4 +192,12 @@ class StudentsController extends Controller
         return view('students.balances', compact('students',));
     }
 
+    public function archived(Request $request)
+    {
+        $levels = Levels::all();
+
+        $students = ArchivedStudent::paginate(20);
+
+        return view('archived.index', compact('students', 'levels'));
+    }
 }

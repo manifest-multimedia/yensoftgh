@@ -50,7 +50,7 @@
                                 <td>{{ $student->serial_id }}</td>
                                 <td>{{ $student->surname }} {{ $student->othername }}</td>
                                 <td>{{ $student->level->name }}</td>
-                                <td>{{ $student->balance }}</td>
+                                <td>GH₵ {{ $student->balance }}.00</td>
                             </tr>
                         @endforeach
                     </tbody>

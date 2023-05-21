@@ -33,8 +33,13 @@
                     <a href="{{route('staff.index')}}" class="button product-button"><span class="material-icons-outlined">arrow_back</span></a>
 
                 </div>
+
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger">{{ session('erro') }}</div>
                 @endif
 
                 <table class="table">
@@ -58,7 +63,7 @@
                             <tr>
                                 <td scope="row">{{$i++}}</td>
                                 <td>{{ $socialsecurity->month }}</td>
-                                <td>{{ $socialsecurity->staff_ssnit_number }}</td>
+                                <td>{{ $socialsecurity->staff->ssnit_number}}</td>
                                 <td>{{ $socialsecurity->staff->last_name }} {{ $socialsecurity->staff->first_name }}</td>
                                 <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $socialsecurity->month)->format('M') }}</td>
                                 <td>{{ $socialsecurity->year }}</td>
@@ -69,7 +74,6 @@
                                 <td>{{ $socialsecurity->fund_manager_amount }}</td>
                                 <td>
                                 <div class="table-action">
-                                    <a href="{{route('social-securities.edit', $socialsecurity->id)}}"><span class="material-icons-outlined">edit</span></a>&nbsp;&nbsp;
 
                             <a href="{{route('social-securities.destroy', $socialsecurity->id)}}" class="formSubmit" id="formSubmit" type="submit"
                                 onclick="event.preventDefault(); confirmDelete({{ $socialsecurity->id }}, '{{ $socialsecurity->staff->last_name }}');">

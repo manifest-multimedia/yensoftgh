@@ -97,8 +97,19 @@
                         </div>
 
                         <div>
-                            <h2 class="text-orange"><span class="material-icons-outlined">people</span> {{ $inactive_students_count }}</h2>
-                            <p class="text-secondary">Inactive students</p>
+                            <h2 class="text-orange"><span class="material-icons-outlined">no_accounts</span> {{ $inactive_students_count }}</h2>
+                            <p class="text-secondary"><a href="{{ route('archived') }}">Inactive students</a></p>
+
+                        </div>
+
+                        <div>
+                            <h2 class="text-green"><span class="material-icons-outlined">dangerous</span> {{ $withdrawn }}</h2>
+                            <p class="text-secondary">Withdrawn</p>
+                        </div>
+
+                        <div>
+                            <h2 class="text-orange"><span class="material-icons-outlined">school</span> {{ $graduated }}</h2>
+                            <p class="text-secondary">Graduated</p>
                         </div>
                     </div>
                 </div>

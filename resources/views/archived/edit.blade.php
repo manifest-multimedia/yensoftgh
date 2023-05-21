@@ -2,7 +2,7 @@
 
 @section('tile')
 
-<title>Dashboard | Student</title>
+<title>Dashboard | Archive</title>
 
 @endsection
 
@@ -10,20 +10,26 @@
 
         <main class="main-container">
             <div class="main-title text-secondary">
-                <h2>Update Enrollment</h2>
+                <h2>Update Student Archived Infromation</h2>
             </div>
 
             <div class="big-card">
             <div class="card-title">
-                <h3 class="-">Student Enrollment Information</h3>
-                <a href="{{route('students.index')}}" class="button product-button"><span class="material-icons-outlined">arrow_back</span></a>
+                <h3 class="-">Student Archived Information</h3>
+                <a href="{{route('archived')}}" class="button product-button"><span class="material-icons-outlined">arrow_back</span></a>
             </div>
+
             @if(session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
+
+            @if(session('error'))
+                <div class="alert alert-success">{{ session('error') }}</div>
+            @endif
+
             <section class="">
                     <div class="form flex">
-                        <form action="{{route('students.update', $student->id)}}" method="POST">
+                        <form action="{{route('archived.update', $student->id)}}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -211,7 +217,7 @@
                                             <div class="input-field">
                                                 <label for="lastclass">Previous class</label>
                                                 <select name="lastclass" id="lastclass" class="@error('lastclass') is-invalid @enderror" >
-                                                    <option value="{{ $student->lastclass}}">{{ $student->lastClass->name }}</option>
+                                                    <option value="{{ $student->lastclass}}">{{ $student->lastclass }}</option>
                                                     @foreach($levels as $level)
                                                         <option value="{{ $level->id }}">{{ $level->name }}</option>
                                                     @endforeach
@@ -258,7 +264,7 @@
                                 </div>
                                 <br>
                                 <div style="display: flex; justify-content: center;">
-                                    <button type="submit" class="text-btn">Update Enrollment Details</button>
+                                    <button type="submit" class="text-btn">Update Archived Details</button>
                                 </div>                        </form>
                     </div>
             </section>
