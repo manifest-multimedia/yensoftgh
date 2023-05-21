@@ -20,8 +20,7 @@
         <form action="{{ route('payments.index') }}" method="GET">
         <div class="query">
 
-           <a href="{{route('messages.create')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">mail</span>  Compose Internal Message</a>
-           <a href="{{route('sms.create')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">mail</span>  Send SMS Message</a>
+           <a href="{{route('messages.create')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">mail</span>  Compose Message</a>
 
         </div>
         </form>

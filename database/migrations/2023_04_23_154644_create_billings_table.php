@@ -20,12 +20,12 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('serial_number')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('academic_year_id')->notNullable();
+            $table->unsignedBigInteger('academic_year_id')->nullable();
             $table->integer('status')->default(1); // 1 unpaid, 2 partial, 3 paid
             $table->timestamps();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('academic_year_id')->references('id')->on('academic_years')->onDelete('set null');
+            $table->foreign('academic_year_id')->references('id')->on('academic_years');
         });
 
     }

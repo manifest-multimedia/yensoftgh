@@ -97,6 +97,7 @@
         <!--End sidebar-->
 
         <!--Main-->
+
     @yield('content')
         <!--End main-->
     </div>

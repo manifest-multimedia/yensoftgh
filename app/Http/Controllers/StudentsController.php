@@ -182,9 +182,9 @@ class StudentsController extends Controller
         ->filter(function ($student) {
             $totalBilling = $student->billings->sum('amount');
             $totalPayment = $student->payments->sum('amount');
-            $balance = $totalPayment - $totalBilling;
+            $balance = $totalBilling - $totalPayment;
             $student->balance = $balance;
-            return $balance < 0;
+            return $balance > 0;
         });
         return view('students.balances', compact('students',));
     }

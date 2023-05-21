@@ -30,8 +30,13 @@
                 <div class="card-title">
                     <h3 class="-">Existing Fee Bills</h3>
                 </div>
+
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}
+                    </div>
                 @endif
 
                 <table class="table">

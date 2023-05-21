@@ -113,7 +113,8 @@
             Balance Cf: <strong>GH₵ {{  $Balance - $payment->amount}}.00</strong><br>
         </div>
         <hr>
-        <div class="footer">Thank you for your payment. <br> Keep this receipt safe.<br>www.yensoftgh.com</div>
+        <br>
+        <div style="font-size: 12px; text-align: center;">Thank you for your payment. <br> Keep this receipt safe.<br>www.yensoftgh.com</div>
 	</div>
 
     <!-- print button -->

@@ -3,7 +3,7 @@
 
 @section('title')
 
-<title>Dashboard | Messages</title>
+<title>Dashboard | SMS</title>
 
 @endsection
 
@@ -11,29 +11,29 @@
 
 <main class="main-container">
     <div class="main-title text-secondary">
-        <h2>Messages</h2>
+        <h2>Send SMS</h2>
     </div>
 
     <div class="section">
         <div class="big-card">
             <div class="card-title">
-                <h3 class="-">Compose Message</h3>
+                <h3 class="">Compose Message</h3>
                 <a href="{{route('messages.index')}}" class="button product-button"><span class="material-icons-outlined">arrow_back</span></a>
             </div>
 
-            <form action="{{ route('messages.store') }}" method="POST">
+            <form action="{{ route('sms.send') }}" method="POST">
                 @csrf
                     <div class="form ">
                         <div class="details personal">
                             <div class="fields">
                                 <div class="card-input">
-                                    <label for="subject">Subject</label>
-                                    <input type="text" name="subject" id="subject" required>
+                                <label for="phone_number">Phone Number</label>
+                                <input id="phone_number" type="text" class="form-control" name="phone_number" required>
                                 </div>
 
                                 <div class="card-input">
-                                    <label for="body">Message</label>
-                                    <textarea name="body" id="body" rows="5" required></textarea>
+                                <label for="message">Message</label>
+                                <textarea id="message" class="form-control" name="message" required></textarea>
                                 </div>
                             </div>
                         </div>

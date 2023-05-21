@@ -8,6 +8,7 @@ use App\Http\Controllers\ExamScoreController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ReportCardController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TermController;
 use Illuminate\Support\Facades\Auth;
@@ -129,6 +130,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/calendar/store', [CalendarController::class, 'store']);
         Route::patch('/calendar/update/{id}', [CalendarController::class, 'update']);
         Route::delete('/calendar/destroy/{id}', [CalendarController::class, 'destroy']);
+
+        //SMS Messaging
+        Route::get('/sms/create', [SmsController::class, 'create'])->name('sms.create');
+        Route::post('/sms/send', [SmsController::class, 'send'])->name('sms.send');
+
 
         Route::get('admin', function () {
             return view('admin');
