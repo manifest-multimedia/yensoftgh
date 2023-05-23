@@ -547,6 +547,34 @@ form a {
     justify-content: center;
 }
 
+/*================ PROFILE IMAGE ===============*/
+
+
+.profile {
+    text-align: center;
+  }
+
+  .profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .profile input[type="file"] {
+    display: none;
+  }
+
+  .profile label {
+    display: flow-root;
+    cursor: pointer;
+    color: #fff;
+    margin-top: -35px;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+
+
 /*=========================== TABLE ==========================*/
 .table {
     font-family: Inter, sans-serif;

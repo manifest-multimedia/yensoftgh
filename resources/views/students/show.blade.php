@@ -20,8 +20,17 @@
             <a href="#" class="button-green""><span class="material-icons-outlined">print</span></a>
         </div>
         <!--student name and image-->
-            <div class="" style="display: flex; justify-content: center; align-items: center;">
-                <img src="{{ url('storage/app/photo/' . $student->photo) }}" alt="logo" style="height: 100px; background: #ddd; border-radius: 50%;">
+            <div class="profile">
+                <form method="POST" action="{{ route('upload.photo', ['id' => $student->id]) }}" id="upload-form" enctype="multipart/form-data">
+                    @method ('PUT')
+                    @csrf
+                <img id="profile-image" src="{{ $student->photo }}" alt="Profile Image" style="background: #ddd; ">
+
+                <input type="file" id="image-upload" name="photo" accept="image/*">
+                <label for="image-upload"><span class="material-icons-outlined">edit</span></label>
+                <form>
+
+
             </div>
             <br>
             <h3 style="text-align: center">{{ $student->surname }} {{ $student->othername }}</h3>
@@ -232,5 +241,19 @@
 
     <script src="{{(asset('assets/js/script.js'))}}"></script>
 
+    <script>
+        document.getElementById("image-upload").addEventListener("change", function (e) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            document.getElementById("profile-image").src = event.target.result;
+            uploadImage(event.target.result);
+        };
+        reader.readAsDataURL(e.target.files[0]);
+        });
+        // Add an event listener to the file input field
+        document.getElementById('image-upload').addEventListener('change', function() {
+            document.getElementById('upload-form').submit();
+        });
+    </script>
 @endsection
 

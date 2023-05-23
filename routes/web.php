@@ -210,6 +210,10 @@ Route::middleware('auth')->group(function () {
 
         //Messages
         Route::resource('messages', MessageController::class)->except(['edit', 'update', 'destroy']);
+
+        //Image Upload
+        Route::put('/upload-photo/{id}', [StudentsController::class, 'updatePhoto'])->name('upload.photo');
+
     });
 
 });

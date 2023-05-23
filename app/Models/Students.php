@@ -68,19 +68,21 @@ class Students extends Model
             $surnameInitial = substr($parts[0], 0, 1);
             $otherNameInitial = isset($parts[1]) ? substr($parts[1], 0, 1) : '';
             $avatarName = $student->serial_id . '.png';
-            $avatarPath = 'photo/' . $avatarName;
-            $avatarImage = imagecreatetruecolor(300, 300);
-            $bgColor = imagecolorallocate($avatarImage, 221, 221, 221);
+            $avatarPath = public_path('assets/photo/') . $avatarName;
+            $avatarImage = imagecreatetruecolor(400, 400);
+            $bgColor = imagecolorallocate($avatarImage, 251, 221, 221);
             imagefill($avatarImage, 0, 0, $bgColor);
             $textColor = imagecolorallocate($avatarImage, 51, 51, 51);
             $fontPath = public_path('fonts/arial.ttf');
-            imagettftext($avatarImage, 120, 0, 150, 150, $textColor, $fontPath, $surnameInitial . $otherNameInitial);
-            ob_start();
-            imagepng($avatarImage);
-            $contents = ob_get_contents();
-            ob_end_clean();
-            Storage::put($avatarPath, $contents);
-            $student->photo = $avatarPath;
+            $textBoundingBox = imagettfbbox(100, 0, $fontPath, $surnameInitial . $otherNameInitial);
+            $textWidth = $textBoundingBox[2] - $textBoundingBox[0];
+            $textHeight = $textBoundingBox[7] - $textBoundingBox[1];
+            $textX = (400 - $textWidth) / 2 - $textBoundingBox[0]; // Horizontal center alignment
+            $textY = (400 - $textHeight) / 2 - $textBoundingBox[1] + $textHeight; // Vertical center alignment
+            imagettftext($avatarImage, 100, 0, $textX, $textY, $textColor, $fontPath, $surnameInitial . $otherNameInitial);
+            imagepng($avatarImage, $avatarPath);
+            imagedestroy($avatarImage);
+            $student->photo = '/assets/photo/' . $avatarName;
             $student->save();
         });
     }

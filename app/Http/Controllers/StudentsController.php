@@ -9,6 +9,9 @@ use App\Models\Students;
 use App\Models\Levels;
 use App\Http\Requests\StoreStudentsRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 
 class StudentsController extends Controller
 {
@@ -97,6 +100,31 @@ class StudentsController extends Controller
         $total_due_formatted = 'GH₵ ' . number_format($total_due, 2);
 
         return view('students.show', compact('student', 'billings', 'payments', 'total_due', 'total_bill_formatted', 'total_payment_formatted', 'total_due_formatted'));
+    }
+
+
+    public function updatePhoto(Request $request, $id)
+    {
+        // Retrieve the student record
+        $student = Students::findOrFail($id);
+
+        // Delete the old image file
+        if ($student->photo) {
+            $oldImagePath = public_path($student->photo);
+            if (File::exists($oldImagePath)) {
+                File::delete($oldImagePath);
+            }
+        }
+
+        // Move the new image file to the 'public/assets/photo' directory
+        $newFileName = $student->serial_id . '.png';
+        $newImagePath = $request->file('photo')->move(public_path('assets/photo'), $newFileName);
+
+        // Update the student record
+        $student->photo = '/assets/photo/' . $newFileName;
+        $student->save();
+
+        return redirect()->back()->with('success', 'Student photo updated successfully.');
     }
 
     /**
