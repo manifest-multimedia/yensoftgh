@@ -21,7 +21,6 @@ class ArchivedStudent extends Model
             if ($archivedStudent->isDirty('status') && $archivedStudent->status === 1) {
                 // Create a new student record in the students table
                 $newStudent = new Students();
-                $newStudent->id = $archivedStudent->student_id;
                 $newStudent->serial_id = $archivedStudent->serial_id;
                 $newStudent->surname = $archivedStudent->surname;
                 $newStudent->othername = $archivedStudent->othername;
@@ -39,12 +38,10 @@ class ArchivedStudent extends Model
                 $newStudent->photo = $archivedStudent->photo;
                 $newStudent->level_id = $archivedStudent->level_id;
                 $newStudent->lastclass = $archivedStudent->lastclass;
-               // $newStudent->exemption = $archivedStudent->exemption;
                 $newStudent->status = $archivedStudent->status;
 
                 $newStudent->save();
                 // Delete the archived student record
-                dd($archivedStudent);
                 $archivedStudent->delete();
             }
         });
