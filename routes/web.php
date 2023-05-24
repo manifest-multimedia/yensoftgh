@@ -12,6 +12,7 @@ use App\Http\Controllers\ReportCardController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TermController;
+use App\Models\SchoolSettings;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
@@ -118,6 +119,7 @@ Route::middleware('auth')->group(function () {
         Route::post('attendance/store', [AttendanceController::class, 'store'])->name('store.attendance');
 
         //Settings Routes
+        Route::get('/school/profile', [SchoolController::class, 'showProfile'])->name('school.profile');
         Route::get('/school/settings', [SchoolController::class, 'showSettingsForm'])->name('school.settings.form');
         Route::put('/school/settings', [SchoolController::class, 'saveSettings'])->name('school.settings.update');
 
@@ -213,6 +215,7 @@ Route::middleware('auth')->group(function () {
 
         //Image Upload
         Route::put('/upload-photo/{id}', [StudentsController::class, 'updatePhoto'])->name('upload.photo');
+        Route::put('/upload-logo', [SchoolController::class, 'updateLogo'])->name('upload.logo');
 
     });
 

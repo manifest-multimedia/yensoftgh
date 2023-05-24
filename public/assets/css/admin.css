@@ -549,8 +549,14 @@ form a {
 
 /*================ PROFILE IMAGE ===============*/
 
+.school-logo img{
+    width: 130px;
+    height: 150px;
+    object-fit: cover;
 
-.profile {
+  }
+
+.profile, .school-logo {
     text-align: center;
   }
 
@@ -561,18 +567,23 @@ form a {
     object-fit: cover;
   }
 
-  .profile input[type="file"] {
+
+
+  .profile input, .school-logo input[type="file"] {
     display: none;
   }
 
-  .profile label {
+  .profile label, .school-logo label {
     display: flow-root;
     cursor: pointer;
     color: #fff;
     margin-top: -35px;
     padding: 5px 10px;
     border-radius: 4px;
-  }
+}
+.profile span, .school-logo span {
+    color: #ccc;
+}
 
 
 /*=========================== TABLE ==========================*/

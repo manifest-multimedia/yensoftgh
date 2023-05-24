@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Profile</title>
+    <style>
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #profile {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        #logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #logo img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+
+        #name {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #address,
+        #phone,
+        #email {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>School Profile</h1>
+
+        <div id="logo">
+            <img src="{{ asset('images/logo.png') }}" alt="School Logo">
+        </div>
+
+        <div id="profile">
+            <h2 id="name">School Name</h2>
+            <p id="address">School Address</p>
+            <p id="phone">Contact Number</p>
+            <p id="email">Email Address</p>
+        </div>
+    </div>
+
+    <script>
+        fetch('/api/school/profile')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('name').textContent = data.name;
+                document.getElementById('address').textContent = 'Address: ' + data.address;
+                document.getElementById('phone').textContent = 'Contact: ' + data.phone;
+                document.getElementById('email').textContent = 'Email: ' + data.email;
+            })
+            .catch(error => {
+                console.log('Error fetching school profile data:', error);
+            });
+    </script>
+</body>
+</html>

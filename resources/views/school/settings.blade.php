@@ -16,13 +16,14 @@
     <div class="big-card">
         <div class="card-title">
             <h3 class="-">School information</h3>
+                <a href="{{route('school.profile')}}" class="button product-button"><span class="material-icons-outlined">arrow_back</span></a>
         </div>
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
             <form method="POST" action="{{ route('school.settings.update') }}">
-                @csrf 
+                @csrf
                 @method('PUT')
 
                 @foreach ($settings as $setting)

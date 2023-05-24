@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('school_country')->nullable();
             $table->string('school_phone')->nullable();
             $table->string('school_email')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

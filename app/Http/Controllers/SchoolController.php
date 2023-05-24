@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SchoolSettings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class SchoolController extends Controller
 {
@@ -13,6 +14,39 @@ class SchoolController extends Controller
         $settings = SchoolSettings::all();
         return view('school.settings', compact('settings','settings'));
     }
+
+
+    public function showProfile()
+    {
+        $settings = SchoolSettings::all();
+        return view('school.show', compact('settings'));
+
+    }
+
+    public function updateLogo(Request $request,)
+    {
+        // Retrieve the student record
+        $setting = SchoolSettings::first();
+
+        // Delete the old image file
+        if ($setting->photo) {
+            $oldImagePath = public_path($setting->photo);
+            if (File::exists($oldImagePath)) {
+                File::delete($oldImagePath);
+            }
+        }
+
+        // Move the new image file to the 'public/assets/photo' directory
+        $newFileName = $setting->abbre . '.png';
+        $newImagePath = $request->file('photo')->move(public_path('assets/img'), $newFileName);
+
+        // Update the student record
+        $setting->photo = '/assets/img/' . $newFileName;
+        $setting->save();
+
+        return redirect()->back()->with('success', 'School logo updated successfully.')->with('display_time', 3);
+    }
+
 
     public function saveSettings(Request $request)
     {

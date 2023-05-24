@@ -9,7 +9,6 @@ use App\Models\Students;
 use App\Models\Levels;
 use App\Http\Requests\StoreStudentsRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 
@@ -124,7 +123,7 @@ class StudentsController extends Controller
         $student->photo = '/assets/photo/' . $newFileName;
         $student->save();
 
-        return redirect()->back()->with('success', 'Student photo updated successfully.');
+        return redirect()->back()->with('success', 'Student photo updated successfully.')->with('display_time', 3);
     }
 
     /**

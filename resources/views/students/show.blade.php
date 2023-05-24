@@ -9,7 +9,9 @@
     <div class="main-title text-secondary">
         <h2>Profile</h2>
     </div>
-
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 <div class="section1">
 
     <!--=============== Student Profile ==============-->
@@ -19,6 +21,7 @@
 
             <a href="#" class="button-green""><span class="material-icons-outlined">print</span></a>
         </div>
+
         <!--student name and image-->
             <div class="profile">
                 <form method="POST" action="{{ route('upload.photo', ['id' => $student->id]) }}" id="upload-form" enctype="multipart/form-data">
@@ -240,6 +243,19 @@
 @section('scripts')
 
     <script src="{{(asset('assets/js/script.js'))}}"></script>
+
+    <script>
+        // Find the success alert and set a timeout to hide it
+        var successAlert = document.querySelector('.alert-success');
+        if (successAlert) {
+            var displayTime = {{ session('display_time') ?? 0 }};
+            if (displayTime > 0) {
+                setTimeout(function() {
+                    successAlert.style.display = 'none';
+                }, displayTime * 1000);
+            }
+        }
+    </script>
 
     <script>
         document.getElementById("image-upload").addEventListener("change", function (e) {
