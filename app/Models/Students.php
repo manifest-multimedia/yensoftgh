@@ -104,6 +104,11 @@ class Students extends Model
 
     }
 
+    public function reportComments()
+    {
+        return $this->hasMany(ReportComment::class, 'student_id');
+    }
+
     public function lastClass()
     {
         return $this->belongsTo(Levels::class, 'lastclass');
@@ -123,6 +128,7 @@ class Students extends Model
     {
         return $this->hasMany(Exercise::class);
     }
+
 
     public function examScores()
     {

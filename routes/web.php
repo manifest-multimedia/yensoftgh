@@ -9,6 +9,7 @@ use App\Http\Controllers\ExamScoreController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ReportCardController;
+use App\Http\Controllers\ReportCommentController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TermController;
@@ -216,6 +217,14 @@ Route::middleware('auth')->group(function () {
         //Image Upload
         Route::put('/upload-photo/{id}', [StudentsController::class, 'updatePhoto'])->name('upload.photo');
         Route::put('/upload-logo', [SchoolController::class, 'updateLogo'])->name('upload.logo');
+
+        //Report Comments
+        Route::get('report-comments', [ReportCommentController::class, 'index'])->name('comment.index');
+        Route::get('report-comments/create', [ReportCommentController::class, 'create'])->name('comment.create');
+        Route::post('report-comments', [ReportCommentController::class, 'store'])->name('comment.store');
+        Route::get('report-comments/{id}', [ReportCommentController::class, 'index'])->name('comment.edit');
+        Route::put('report-comments/{id}', [ReportCommentController::class, 'update'])->name('comment.update');
+        Route::delete('report-comments/{id}', [ReportCommentController::class, 'delete'])->name('comment.delete');
 
     });
 

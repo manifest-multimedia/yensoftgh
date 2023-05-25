@@ -11,11 +11,13 @@
         <form action="{{ route('expenses.index') }}" method="GET">
         <div class="query">
 
-            <a href="{{route('class-scores.create')}}" class="text-btn" style="text-decoration: none; "><span class="material-icons-outlined"></span>Enter Class Scores</a>
+            <a href="{{route('class-scores.create')}}" class="text-btn" style="text-decoration: none; "><span class="material-icons-outlined">task_alt</span> Enter Class Scores</a>
 
-            <a href="{{route('exam-scores.create')}}" class="text-btn" style="text-decoration: none; "><span class="material-icons-outlined"></span>Enter Exam Scores</a>
+            <a href="{{route('exam-scores.create')}}" class="text-btn" style="text-decoration: none; "><span class="material-icons-outlined">check_box</span> Enter Exam Scores</a>
 
-            <a href="{{route('select_exam')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined"></span>Get Report Card</a>
+            <a href="{{route('comment.index')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">comment</span> Comment on Report</a>
+
+            <a href="{{route('select_exam')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">bar_chart</span> Get Report Card</a>
 
         </div>
         </form>

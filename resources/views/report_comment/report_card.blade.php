@@ -26,10 +26,7 @@
         height: 297mm;
         margin: 0 auto;
         page-break-after: always;
-        padding-top: 10mm;
-        padding-bottom: 10mm;
-        padding-right: 15mm;
-        padding-left: 15mm;
+        padding: 15mm;
         box-sizing: border-box;
         border: 1px solid #ccc;
     }
@@ -42,7 +39,7 @@
     .report-card table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 4mm;
+        margin-top: 5mm;
     }
 
     .report-card th,
@@ -64,7 +61,7 @@
 		table {
 			border-collapse: collapse;
 			width: 100%;
-			margin-bottom: 5px;
+			margin-bottom: 10px;
 		}
 
 		th, td {
@@ -95,13 +92,14 @@
 		}
 
         .graph-area{
-            height: 220px;
+            height: 240px;
         }
 
         img{
             width: 85px;
             height: 95px;
             object-fit: cover;
+
         }
 
         .report-card {
@@ -306,13 +304,7 @@
             </script>
 
 
-            <p style="font-style: ;">Class Teacher's Comment:
-                @foreach ($reportCard['comments'] as $comment)
-                   <strong><i> {{ $comment }}</i></strong></p>
-                @endforeach
-
-                            <p style = "text-align: right;"><i>Signature</i> <br>School Head</p>
-
+            <p>Comments
         </div>
 
     @endforeach
