@@ -78,43 +78,106 @@
 
                 </div>
 
-                <div class="social-media1">
-                    <div class="section">
+                <div class="stats_main stats">
 
-                        <div>
-                            <h2 class="text-orange"><span class="material-icons-outlined">man</span> {{ $male_students_count }}</h2>
-                            <p class="text-secondary">Male students</p>
+                    <div class="row">
+                        <div class="column">
+                            <div class="cardxx">
+                                <div class="cardxxs">
+                                    <div class="grid-item">
+                                        <h2 class="text-orange"><span class="material-icons-outlined">man</span> </h2>
+                                    </div>
+
+                                    <div class="grid-item">
+                                        <h2 class="text-orange">{{ $male_students_count }}</h2>
+                                        <p class="text-secondary">Males</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div>
-                            <h2 class="text-blue"><span class="material-icons-outlined">woman</span> {{ $female_students_count }}</h2>
-                            <p class="text-secondary">Female students</p>
-                        </div>
+                        <div class="column">
+                            <div class="cardxx">
+                                <div class="cardxxs">
+                                    <div class="grid-item">
+                                        <h2 class="text-orange"><span class="material-icons-outlined">woman</span> </h2>
+                                    </div>
 
-                        <div>
-                            <h2 class="text-green"><span class="material-icons-outlined">people</span> {{ $active_students_count }}</h2>
-                            <p class="text-secondary">Active students</p>
-                        </div>
-
-                        <div>
-                            <h2 class="text-orange"><span class="material-icons-outlined">no_accounts</span> {{ $inactive_students_count }}</h2>
-                            <p class="text-secondary"><a href="{{ route('archived') }}">Inactive students</a></p>
-
-                        </div>
-
-                        <div>
-                            <h2 class="text-green"><span class="material-icons-outlined">dangerous</span> {{ $withdrawn }}</h2>
-                            <p class="text-secondary">Withdrawn</p>
-                        </div>
-
-                        <div>
-                            <h2 class="text-orange"><span class="material-icons-outlined">school</span> {{ $graduated }}</h2>
-                            <p class="text-secondary">Graduated</p>
+                                    <div class="grid-item">
+                                        <h2 class="text-orange">{{ $female_students_count}}</h2>
+                                        <p class="text-secondary">Females</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="column">
+                            <div class="cardxx">
+                                <div class="cardxxs">
+                                    <div class="grid-item">
+                                        <h2 class="text-green"><span class="material-icons-outlined">people</span> </h2>
+                                    </div>
+
+                                    <div class="grid-item">
+                                        <h2 class="text-green">{{ $active_students_count }}</h2>
+                                        <p class="text-secondary">Active students</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="cardxx">
+                                <div class="cardxxs">
+                                    <div class="grid-item">
+                                        <h2 class="text-green"><span class="material-icons-outlined">no_accounts</span> </h2>
+                                    </div>
+
+                                    <div class="grid-item">
+                                        <h2 class="text-green">{{ $inactive_students_count  }}</h2>
+                                        <p class="text-secondary">Inactive students</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="column">
+                            <div class="cardxx">
+                                <div class="cardxxs">
+                                    <div class="grid-item">
+                                        <h2 class="text-red"><span class="material-icons-outlined">school</span> </h2>
+                                    </div>
+
+                                    <div class="grid-item">
+                                        <h2 class="text-red">{{ $graduated  }}</h2>
+                                        <p class="text-secondary">Graduated</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="cardxx">
+                                <div class="cardxxs">
+                                    <div class="grid-item">
+                                        <h2 class="text-red"><span class="material-icons-outlined">dangerous</span> </h2>
+                                    </div>
+
+                                    <div class="grid-item">
+                                        <h2 class="text-red">{{ $withdrawn  }}</h2>
+                                        <p class="text-secondary">Withdrawn</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
-        </main>
+
+        </div>
+    </main>
 
 @endsection
 
