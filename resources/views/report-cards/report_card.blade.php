@@ -42,7 +42,7 @@
     .report-card table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 4mm;
+        margin-top: 3.5mm;
     }
 
     .report-card th,
@@ -64,7 +64,6 @@
 		table {
 			border-collapse: collapse;
 			width: 100%;
-			margin-bottom: 5px;
 		}
 
 		th, td {
@@ -98,10 +97,15 @@
             height: 220px;
         }
 
-        img{
+        .grid-item img{
             width: 85px;
             height: 95px;
             object-fit: cover;
+        }
+
+        img .signature{
+            width: 40px;
+            height: 80px;
         }
 
         .report-card {
@@ -311,7 +315,9 @@
                    <strong><i> {{ $comment }}</i></strong></p>
                 @endforeach
 
-                            <p style = "text-align: right;"><i>Signature</i> <br>School Head</p>
+                            <p style = "text-align: right;">
+                            <img class="signature" src="{{ asset('assets/img/signature.png') }}" alt="School Logo" style="text-align: center">
+                            <br>School Head</p>
 
         </div>
 

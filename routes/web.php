@@ -199,8 +199,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('auth')->group(function () {
-        Route::get('/profile/{profile?}', [ProfileController::class, 'show'])->name('profile.show');
-        Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+        Route::get('/user_profile/{profile?}', [ProfileController::class, 'show'])->name('profile.show');
+        Route::get('/profile/{profile?}', [ProfileController::class, 'adminShow'])->name('admin_profile.show');
+        Route::put('/user_profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
         Route::get('/search', 'App\Http\Controllers\StudentsController@search');
         Route::get('/get-students/{level_id}', [BillingController::class, 'getStudents'])->name('get-students');

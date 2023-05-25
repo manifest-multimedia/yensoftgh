@@ -8,10 +8,16 @@ use App\Models\Profile;
 
 class ProfileController extends Controller
 {
+    //admin user
+    public function adminShow()
+    {
+        $user = Auth::user();
+        return view('profile.show_admin', compact('user'));
+    }
     public function show()
     {
         $user = Auth::user();
-        return view('profile.show', compact('user'));
+        return view('profile.show_user', compact('user'));
     }
 
     /**
@@ -28,23 +34,23 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = auth()->user();
-    
+
         $profile = $user->profile;
-    
+
         if (!$profile) {
             $profile = new Profile;
             $profile->user_id = $user->id;
         }
-    
+
         $profile->gender = $request->input('gender');
         $profile->dob = $request->input('dob');
         $profile->address = $request->input('address');
         $profile->phone = $request->input('phone');
         $profile->residence = $request->input('residence');
-    
+
         $profile->save();
-    
+
         return redirect()->route('profile.show', $user->id);
     }
-    
+
 }

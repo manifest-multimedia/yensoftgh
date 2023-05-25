@@ -39,7 +39,7 @@
                     <img src="{{(asset('assets/img/profile.png'))}}" alt="user image" style="width: 30px;">&nbsp;{{ Auth::user()->name}}</div>
 
                 <div class="time table-action">
-                	<a href="{{ route('profile.show', ['profile' => Auth::id()]) }}"><span class="material-icons-outlined">settings</span></a>
+                	<a href="{{ route('admin_profile.show', ['profile' => Auth::id()]) }}"><span class="material-icons-outlined">settings</span></a>
                 </div>
 
                 <div class="table-action">

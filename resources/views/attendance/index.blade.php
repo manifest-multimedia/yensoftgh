@@ -119,34 +119,41 @@
 
     <script src="{{(asset('assets/js/script.js'))}}"></script>
 
-<script>
-function getStudents(){
-    // When a level is selected, load the students for that level
-    const levelSelect = document.querySelector('#level_id');
-    const studentsContainer = document.querySelector('#students-container');
-    levelSelect.addEventListener('change', function() {
-        const levelId = this.value;
-        if (levelId) {
-            const students = @json($students);
-            const filteredStudents = students.filter(s => s.level_id == levelId);
-            const studentsHtml = filteredStudents.map(s => `
-                <tr>
-                    <td>${s.serial_id}</td>
-                    <td>${s.surname} ${s.othername}</td>
-                    <td>
-                        <input type="checkbox" name="status[]"  value="1" > Present &nbsp;&nbsp;
-                        <input type="checkbox" name="status[]"  value="2" > Absent
-                        <input type="hidden" name="student_id[]" value="${s.id}">
-                    </td>
-                </tr>
-            `).join('');
-            studentsContainer.innerHTML = studentsHtml;
-        } else {
-            studentsContainer.innerHTML = 'No students in the class selected';
+    <script>
+        function getStudents() {
+            // When a level is selected, load the students for that level
+            const levelSelect = document.querySelector('#level_id');
+            const studentsContainer = document.querySelector('#students-container');
+
+            function loadStudents() {
+                const levelId = levelSelect.value;
+                if (levelId) {
+                    const students = @json($students);
+                    const filteredStudents = students.filter(s => s.level_id == levelId);
+                    const studentsHtml = filteredStudents.map(s => `
+                        <tr>
+                            <td>${s.serial_id}</td>
+                            <td>${s.surname} ${s.othername}</td>
+                            <td>
+                                <input type="checkbox" name="status[]" value="1"> Present &nbsp;&nbsp;
+                                <input type="checkbox" name="status[]" value="2"> Absent
+                                <input type="hidden" name="student_id[]" value="${s.id}">
+                            </td>
+                        </tr>
+                    `).join('');
+                    studentsContainer.innerHTML = studentsHtml;
+                } else {
+                    studentsContainer.innerHTML = 'No students in the class selected';
+                }
+            }
+
+            // Call the loadStudents function when the page initially loads
+            loadStudents();
+
+            // Add event listener to the level select element
+            levelSelect.addEventListener('change', loadStudents);
         }
-    });
-}
-</script>
+    </script>
     <script>
         // Find the success alert and set a timeout to hide it
         var successAlert = document.querySelector('.alert-success');

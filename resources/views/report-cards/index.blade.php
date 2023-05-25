@@ -33,7 +33,7 @@
             <label for="exam">Select Exam:</label>
             <select name="exam" id="exam">
                 @foreach ($exams as $exam)
-                    <option value="{{ $exam->id }}">{{ $exam->exam_name }}</option>
+                    <option value="{{ $exam->id }}">{{ $exam->exam_name }} ({{ $exam->academic_year->name }})</option>
                 @endforeach
             </select>
             </div>

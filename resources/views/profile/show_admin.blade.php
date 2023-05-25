@@ -18,7 +18,7 @@
 
     <div class="action_bar section3">
         <a href="#" class="text-btn-green">Change Password</a>
-        <a href="{{ route('teacher') }}" class="text_btn_outlined"><span class="material-icons-outlined">arrow_back</span>Go back</a>
+        <a href="{{ route('dashboard.index') }}" class="text_btn_outlined"><span class="material-icons-outlined">arrow_back</span>Go back</a>
     </div>
 
     <div class="container_inner">
