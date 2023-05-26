@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('payment_id');
             $table->string('serial_number')->nullable();
             $table->integer('term')->notNull();
+            $table->unsignedBigInteger('academic_year_id')->nullable();
             $table->date('payment_date')->notNull();
             $table->decimal('amount', 10, 2)->notNull();
             $table->unsignedBigInteger('student_id')->nullable();
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->foreign('student_id')->references('id') ->on('students')->onDelete('set null');
             $table->foreign('billing_id')->references('id')->on('billings')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('academic_year_id')->references('id')->on('academic_years');
             $table->timestamps();
         });
     }

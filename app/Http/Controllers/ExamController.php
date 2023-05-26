@@ -15,7 +15,7 @@ class ExamController extends Controller
     {
         $exams = Exam::all();
         $terms = Term::all();
-        $academic_years = AcademicYear::all();
+        $academic_years = AcademicYear::orderBy('created_at', 'desc')->get();
         return view('exams.index', compact('exams', 'exams',
         'terms', 'terms','academic_years', 'academic_years'));
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcademicYear;
 use App\Models\Billing;
 use App\Models\Payment;
 use App\Models\SchoolSettings;
@@ -32,10 +33,11 @@ class PaymentController extends Controller
     public function create($billingId)
     {
         $terms = Term::all();
+        $academic_years = AcademicYear::orderBy('created_at', 'desc')->get();
         $billing = Billing::findOrFail($billingId);
         $student = $billing->student;
 
-        return view('payments.create', compact('billing', 'student', 'terms'));
+        return view('payments.create', compact('billing', 'student', 'terms', 'academic_years'));
     }
 
     public function store(Request $request)
@@ -47,13 +49,14 @@ class PaymentController extends Controller
             'payment_date' => 'required',
             'amount' => 'required|numeric',
             'mode' => 'required',
+            'academic_year_id' => 'required'
         ]);
 
         // Calculate Balance on account
         $totalBills = Billing::where('student_id', $request->input('student_id'))->sum('amount');
         $totalPay = Payment::where('student_id', $request->input('student_id'))->sum('amount');
         $Balance = $totalBills - $totalPay;
-//dd($Balance);
+
         // Generate serial number
         $lastPayment = Payment::orderBy('payment_id', 'desc')->first();
         $serialNumber = 'PMT00001';
@@ -68,6 +71,7 @@ class PaymentController extends Controller
         $payment->student_id = $request->input('student_id');
         $payment->billing_id = $request->input('billing_id');
         $payment->term = $request->input('term');
+        $payment->academic_year_id = $request->input('academic_year_id');
         $payment->payment_date = $request->input('payment_date');
         $payment->user_id = $request->input('user_id');
         $payment->amount = $request->input('amount');
@@ -77,6 +81,7 @@ class PaymentController extends Controller
 
         // Update billing status
         $billing = Billing::find($request->input('billing_id'));
+        $billingAmt = $billing->amount;
         $amountPaid = $billing->payments()->sum('amount');
 
         // Calculate total amount due
@@ -84,7 +89,7 @@ class PaymentController extends Controller
         $totalPayments = Payment::where('student_id', $request->input('student_id'))->sum('amount');
         $totalDue = $totalBillings - $totalPayments;
 
-        if ($amountPaid >= $Balance) {
+        if ($amountPaid >= $billingAmt) {
             // Fully paid
             $billing->status = 3;
         } else if ($amountPaid > 0 ) {
@@ -95,6 +100,37 @@ class PaymentController extends Controller
             $billing->status = 1;
         }
         $billing->save();
+
+        // Apply remaining payment to other billings
+        $remainingAmount = $amountPaid - $billingAmt;
+
+        while ($remainingAmount > 0) {
+            $nextBilling = Billing::where('student_id', $request->input('student_id'))
+                ->where('status', '<>', 3) // Exclude fully paid billings
+                ->orderBy('id')
+                ->first();
+
+            if ($nextBilling) {
+                $nextBillingAmt = $nextBilling->amount;
+                $nextAmountPaid = $nextBilling->payments()->sum('amount');
+                $remainingBillingAmount = $nextBillingAmt - $nextAmountPaid;
+
+                if ($remainingAmount >= $remainingBillingAmount) {
+                    // Fully pay the next billing
+                    $nextBilling->status = 3;
+                    $nextBilling->save();
+                    $remainingAmount -= $remainingBillingAmount;
+                } else {
+                    // Partially pay the next billing
+                    $nextBilling->status = 2;
+                    $nextBilling->save();
+                    $remainingAmount = 0;
+                }
+            } else {
+                // No more billings to apply payment to
+                break;
+            }
+        }
 
         // Load payment data with relations
         $payment->load(['student', 'billing']);
@@ -148,5 +184,5 @@ class PaymentController extends Controller
         $payment->delete();
 
         return redirect()->route('payments.index')->with('success', 'Payment deleted successfully.')->with('display_time', 3);
-    }
+        }
 }

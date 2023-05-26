@@ -26,7 +26,7 @@
         height: 297mm;
         margin: 0 auto;
         page-break-after: always;
-        padding-top: 10mm;
+        padding-top: 9mm;
         padding-bottom: 10mm;
         padding-right: 15mm;
         padding-left: 15mm;
@@ -103,9 +103,11 @@
             object-fit: cover;
         }
 
-        img .signature{
-            width: 40px;
-            height: 80px;
+        img{
+            width: 65px;
+            height: 30px;
+            float: right;
+            margin-right: 15px;
         }
 
         .report-card {
@@ -310,14 +312,14 @@
             </script>
 
 
-            <p style="font-style: ;">Class Teacher's Comment:
+            <p >Class Teacher's Comment:
                 @foreach ($reportCard['comments'] as $comment)
                    <strong><i> {{ $comment }}</i></strong></p>
                 @endforeach
 
-                            <p style = "text-align: right;">
-                            <img class="signature" src="{{ asset('assets/img/signature.png') }}" alt="School Logo" style="text-align: center">
-                            <br>School Head</p>
+                <img class="signature" src="{{ asset('assets/img/signature.png') }}" alt="School Logo" style="text-align: center">
+                <br>
+                <p style="text-align: right;">School Head</p>
 
         </div>
 

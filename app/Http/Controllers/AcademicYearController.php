@@ -12,7 +12,8 @@ class AcademicYearController extends Controller
      */
     public function index()
     {
-        $academic_years = AcademicYear::paginate(10);
+        $academic_years = AcademicYear::orderBy('created_at', 'desc')->paginate(10);
+
         return view('academic_years.index', compact('academic_years'));
 
     }

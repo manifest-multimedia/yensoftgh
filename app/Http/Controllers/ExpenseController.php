@@ -40,7 +40,7 @@ class ExpenseController extends Controller
     public function create()
     {
         $terms = Term::all();
-        $academic_years = AcademicYear::all();
+        $academic_years = AcademicYear::orderBy('created_at', 'desc')->get();
 
         return view('expenses.create', compact(
             'terms','terms',

@@ -71,6 +71,34 @@
                         <input type="text" value="{{ $setting->school_email ?? null}}" name="school_email" id="school_email" placeholder="school@school.com">
                     </div>
 
+                    <div class="input-field">
+                        <label for="current_term">Current Term</label>
+                        <select name="current_term" class="@error('current_term') is-invalid @enderror" id="current_term">
+                            @if ($setting && $setting->term)
+                                <option value="{{ $setting->current_term }}">{{ $setting->term->name }}</option>
+                            @endif
+
+                            @foreach ($terms as $term)
+                                <option value="{{ $term->id }}">{{ $term->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="current_year">Current Academic Year</label>
+                        <select name="current_year" class="@error('current_year') is-invalid @enderror" name="current_year">
+                             @if ($setting && $setting->current_year)
+                               <option value="{{ $setting->current_year }}">{{ $setting->academic_year->name }}</option>
+                            @endif
+
+                            @foreach($academic_years as $academic_year)
+                                <option value="{{ $academic_year->id }}">{{ $academic_year->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <label for="school_email">Ensure that the details are accurate. Update the term and year appropiately. </label>
+                    </div>
 
                 </div>
 
@@ -80,6 +108,9 @@
                 </div>
 
             </form>
+
+
+
         </div>
 </div>
 

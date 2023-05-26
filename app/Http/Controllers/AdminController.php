@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SchoolSettings;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -145,9 +146,14 @@ class AdminController extends Controller
         $graduated = DB::table('archived_students')->where('status', '=', '2')->count();
 
         //Finance
-        $total_billings_amount = DB::table('billings')->sum('amount');
-        $total_payments_amount = DB::table('payments')->sum('amount');
-        $total_expenses_amount = DB::table('expenses')->sum('amount');
+
+        // Retrieve the term and year values from SchoolSettings
+        $term = SchoolSettings::value('current_term');
+        $year = SchoolSettings::value('current_year');
+
+        $total_billings_amount = DB::table('billings')->where('term', $term)->where('academic_year_id', $year)->sum('amount');
+        $total_payments_amount = DB::table('payments')->where('term', $term)->where('academic_year_id', $year)->sum('amount');
+        $total_expenses_amount = DB::table('expenses')->where('term_id', $term)->where('academic_year_id', $year)->sum('amount');
 
 
         return view('admin.dashboard', compact('students', 'students_count',

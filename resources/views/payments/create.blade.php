@@ -44,6 +44,8 @@
                                         <input hidden type="text" value="{{ $billing->id }}" name="billing_id" id="billing_id" required>
                                         <input hidden type="text" value="{{ $billing->description }}" name="description" id="description" required>
                                         <input hidden type="text" value="{{ auth()->user()->id }}" name="user_id" id="user_id" required>
+                                        <input hidden type="text" value="{{ $billing->academic_year_id }}" name="academic_year_id" id="academic_year_id" required>
+
 
                                     <div class="card-input">
                                         <label for="payment_date">Payment Date</label>

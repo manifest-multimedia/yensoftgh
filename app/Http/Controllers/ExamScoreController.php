@@ -23,7 +23,7 @@ class ExamScoreController extends Controller
         $subjects = Subject::all();
         $terms = Term::all();
         $exams = Exam::all();
-        $academic_years = AcademicYear::all();
+        $academic_years = AcademicYear::orderBy('created_at', 'desc')->get();
 
         return view('exams.exam', compact('students','levels','subjects','terms','academic_years','exams'));
     }

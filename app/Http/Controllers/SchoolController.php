@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcademicYear;
 use App\Models\SchoolSettings;
+use App\Models\Term;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -12,7 +14,10 @@ class SchoolController extends Controller
     {
 
         $settings = SchoolSettings::all();
-        return view('school.settings', compact('settings','settings'));
+        $academic_years = AcademicYear::orderBy('created_at', 'desc')->get();
+        $terms = Term::all();
+
+        return view('school.settings', compact('settings','terms', 'academic_years'));
     }
 
 
@@ -53,19 +58,22 @@ class SchoolController extends Controller
         // validate the form data
         $validatedData = $request->validate([
             'school_name' => 'required',
-            'abbre'=>'required',
-            'school_address'=>'required',
-            'school_city'=>'required',
+            'abbre' => 'required',
+            'school_address' => 'required',
+            'school_city' => 'required',
             'school_region' => 'required',
             'school_country' => 'required',
-            'school_phone' =>'required',
-            'school_email'=>'required',
+            'school_phone' => 'required',
+            'school_email' => 'required',
             'other_info' => 'nullable|string',
-        ],);
+            'current_year' => 'required',
+            'current_term' => 'required',
+        ]);
 
-        // save the settings to the database
-        // replace with your own code to save the settings
-        $settings = new SchoolSettings();
+        // retrieve the existing settings record from the database
+        $settings = SchoolSettings::first();
+
+        // update the settings with the new values
         $settings->school_name = $validatedData['school_name'];
         $settings->abbre = $validatedData['abbre'];
         $settings->school_address = $validatedData['school_address'];
@@ -74,6 +82,8 @@ class SchoolController extends Controller
         $settings->school_country = $validatedData['school_country'];
         $settings->school_phone = $validatedData['school_phone'];
         $settings->school_email = $validatedData['school_email'];
+        $settings->current_term = $validatedData['current_term'];
+        $settings->current_year = $validatedData['current_year'];
 
         $settings->save();
 

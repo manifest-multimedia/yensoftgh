@@ -14,7 +14,7 @@ class BillingController extends Controller
     public function index(Request $request)
     {
 
-        $billings = Billing::with('student')->orderBy('created_at', 'desc')->paginate(30);
+        $billings = Billing::with('student')->orderBy('created_at', 'desc')->paginate(100);
 
         return view('billings.index', compact('billings'));
     }
@@ -24,7 +24,7 @@ class BillingController extends Controller
         // Get a list of all students to populate a dropdown menu
         $levels = Levels::all();
         $terms = Term::all();
-        $academic_years = AcademicYear::all();
+        $academic_years = AcademicYear::orderBy('created_at', 'desc')->get();
 
         $classId = $request->input('class_id');
         if ($classId) {

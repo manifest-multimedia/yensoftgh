@@ -51,6 +51,7 @@ private function getGradeAndRemark($score)
     return ['grade' => null, 'remark' => null];
 }
 
+
 public function generate(Request $request)
 {
     // Get the selected level and exam
@@ -108,6 +109,7 @@ public function generate(Request $request)
             ->where('exam_scores.exam_id', $selectedExam)
             ->select('subjects.*')
             ->distinct()
+            ->orderBy('name', 'asc') // Sort subjects alphabetically by name
             ->get();
 
         // Initialize variables

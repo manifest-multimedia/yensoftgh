@@ -16,7 +16,7 @@ class AttendanceController extends Controller
         $terms = Term::all();
         $levels = Levels::all();
         $students= Students::all();
-        $academic_years = AcademicYear::all();
+        $academic_years = AcademicYear::orderBy('created_at', 'desc')->get();
 
         return view('attendance.index', compact( 'terms','academic_years', 'levels', 'students'));
     }

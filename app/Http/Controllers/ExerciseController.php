@@ -24,7 +24,7 @@ class ExerciseController extends Controller
         $subjects = Subject::all();
         $students = Students::all();
         $terms = Term::all();
-        $academic_years = AcademicYear::all();
+        $academic_years = AcademicYear::orderBy('created_at', 'desc')->get();
 
 
         return view('exercises.create', compact('levels','levels',
