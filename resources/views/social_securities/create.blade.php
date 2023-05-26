@@ -59,7 +59,7 @@
 
                                 <div class="card-input">
                                     <label for="">Month</label>
-                                    <input type="date" id="month" class="@error('month') is-invalid @enderror" name="month" value="<?php echo date('Y-m-d'); ?>" required>
+                                    <input type="month" id="month" class="@error('month') is-invalid @enderror" name="month" value="<?php echo date('Y-m-d'); ?>" required>
                                     @error('month')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

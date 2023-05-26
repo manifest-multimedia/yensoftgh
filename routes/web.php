@@ -77,8 +77,19 @@ Route::middleware('auth')->group(function () {
         Route::resource('staff_taxes', StaffTaxController::class);
         Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard.index');
 
-        //Payroll Routes
+        //REPORTS ROUTES ===== social security
+        Route::get('/social-security/report', [SocialSecurityController::class, 'generateReport'])->name('social-securities.report');
+        Route::get('/social-security/generate', [SocialSecurityController::class, 'generate'])->name('contribution_report.generate');
 
+        //REPORTS ROUTES ===== staff tax
+        Route::get('/staff-taxes/report', [StaffTaxController::class, 'generateReport'])->name('staff_taxes.report');
+        Route::get('/staff-taxes/generate', [StaffTaxController::class, 'generate'])->name('staff_taxes_report.generate');
+
+        //REPORTS ROUTES ===== payroll
+        Route::get('/payroll-report/report', [PayrollController::class, 'generateReport'])->name('payroll.report');
+        Route::get('/payroll-report/generate', [PayrollController::class, 'generate'])->name('payroll.generate');
+
+        //Payroll Routes
         Route::get('/payrolls', [PayrollController::class, 'index'])->name('payrolls.index');
         Route::get('/payrolls/create', [PayrollController::class, 'create'])->name('payrolls.create');
         Route::post('/payrolls', [PayrollController::class, 'store'])->name('payrolls.store');

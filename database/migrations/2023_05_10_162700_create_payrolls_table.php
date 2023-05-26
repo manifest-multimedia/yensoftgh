@@ -13,7 +13,7 @@ return new class extends Migration
         Schema::create('payrolls', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('staff_id')->constrained('staff');
-            $table->date('month');
+            $table->string('month');
             $table->year('year');
             $table->decimal('gross_salary')->nullable();
             $table->decimal('basic_salary')->nullable();

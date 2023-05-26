@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('staff_taxes', function (Blueprint $table) {
             $table->id();
-            $table->date('month');
+            $table->string('month');
             $table->foreignId('staff_id')->constrained('staff');
             $table->decimal('basic_salary')->nullable();
             $table->decimal('allowances')->nullable();

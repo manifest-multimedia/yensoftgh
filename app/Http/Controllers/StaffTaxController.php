@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\StaffTax;
 use App\Models\Staff;
 use App\Models\SocialSecurity;
+use Illuminate\Support\Facades\DB;
 
 class StaffTaxController extends Controller
 {
@@ -137,4 +138,30 @@ class StaffTaxController extends Controller
 
         return redirect('/staff_taxes')->with('success', 'Staff tax deleted!')->with('display_time', 3);
     }
+
+
+    public function generateReport(Request $request)
+    {
+        return view('staff_taxes.query', );
+    }
+
+    public function generate(Request $request)
+    {
+        $month = $request->input('month');
+
+            $contributions = DB::table('staff_taxes')
+            ->join('staff', 'staff_taxes.staff_id', '=', 'staff.id')
+            ->select('staff_taxes.*', 'staff.first_name as firstname','staff.last_name as last_name','staff.staff_no as staff_no' ) // Adjust column name
+            ->where('month', $month)
+            ->get();
+
+           // dd($month, $contributions);
+
+        // Fetch school details from school_setting table
+        $schoolDetails = DB::table('school_settings')->first();
+
+        return view('staff_taxes.report', compact('contributions', 'month', 'schoolDetails'));
+    }
+
+
 }

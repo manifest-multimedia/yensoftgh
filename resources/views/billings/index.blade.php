@@ -20,6 +20,7 @@
                     <a href="{{route('payments.index')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">credit_card</span>  See Paid Fees</a>
                     <a href="{{route('expenses.index')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">inventory</span>  Expenditures</a>
                     <a href="{{route('student-balances')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">balance</span>  Get Debtors</a>
+                    <a href="#" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">card_travel</span>  Finance Report</a>
 
                 </div>
                 </form>
