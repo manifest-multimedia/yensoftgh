@@ -16,7 +16,7 @@
                 <div class="col-lg-10">
                     <div class="section-title text-center pb-40">
                         <div class="line m-auto"></div>
-                        <h3 class="title">Clean and simple design, <span> Comes with everything you need to get started!</span></h3>
+                        <h3 class="title">In few steps, <span> Streamline Your School Management with Yensoft SchoolDB</span></h3>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->

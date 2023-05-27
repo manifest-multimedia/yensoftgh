@@ -93,9 +93,9 @@
                                     <li class="nav-item">
                                         <a class="page-scroll" href="#facts">Why</a>
                                     </li>
-                                    <li class="nav-item">
+                                <!--    <li class="nav-item">
                                         <a class="page-scroll" href="#team">Team</a>
-                                    </li>
+                                    </li>-->
                                     <li class="nav-item">
                                         <a class="page-scroll" href="#blog">Blog</a>
                                     </li>
