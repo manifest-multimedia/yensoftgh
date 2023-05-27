@@ -26,6 +26,13 @@
                 <h3 class="-">Contribution Detials</h3>
                 <a href="{{route('social-securities.index')}}" class="button product-button"><span class="material-icons-outlined">arrow_back</span></a>
             </div>
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger">{{ session('erro') }}</div>
+                @endif
                 <form action="{{ route('social-securities.store') }}" method="POST">
                     @csrf
 
