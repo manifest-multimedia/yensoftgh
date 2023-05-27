@@ -18,7 +18,7 @@ class CreateSocialSecuritiesTable extends Migration
             $table->unsignedBigInteger('staff_id');
             $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
             $table->string('staff_ssnit_number');
-            $table->date('month');
+            $table->string('month');
             $table->integer('year');
             $table->decimal('basic_salary', 10, 2);
             $table->decimal('employee_contribution', 10, 2);

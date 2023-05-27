@@ -18,7 +18,7 @@
                 <div class="query">
 
                     <a href="{{route('staff_taxes.create')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">add</span>  Add Staff Tax</a>
-                    <a href="#" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">list_alt</span>  Get Tax List</a>
+                    <a href="{{ route('staff_taxes.report') }}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">list_alt</span>  Get Tax List</a>
                     <a href="{{route('staff.index')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">badge</span>  Staff List</a>
                     <a href="#" class="button-green" style="text-decoration: none; padding-left: 10px; padding-right: 12px; padding-top: 5px; padding-bottom: 5px;" onclick="printContent();"><span class="material-icons-outlined">print</span> Print</a>
 
@@ -54,7 +54,7 @@
                                 <td scope="row">{{$i++}}</td>
                                 <td>{{ $staff_tax->staff->staff_no }}</td>
                                 <td>{{ $staff_tax->staff->last_name }} {{ $staff_tax->staff->first_name }}</td>
-                                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $staff_tax->month)->format('M') }}</td>
+                                <td>{{ $staff_tax->month }}</td>
                                 <td>{{ $staff_tax->basic_salary }}</td>
                                 <td>{{ $staff_tax->allowances }}</td>
                                 <td>{{ $staff_tax->basic_salary + $staff_tax->allowances }}</td>

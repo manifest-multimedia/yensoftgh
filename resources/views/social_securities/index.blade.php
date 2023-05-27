@@ -18,7 +18,7 @@
                 <div class="query">
 
                     <a href="{{route('social-securities.create')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">add</span>  Add Staff Contribution</a>
-                    <a href="#" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">list_alt</span>  Get Contribution List</a>
+                    <a href="{{ route('social-securities.report') }}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">list_alt</span>  Get Contribution List</a>
                     <a href="{{route('staff.index')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">badge</span>  Staff List</a>
                     <a href="#" class="button-green" style="text-decoration: none; padding-left: 10px; padding-right: 12px; padding-top: 5px; padding-bottom: 5px;" onclick="printContent();"><span class="material-icons-outlined">print</span> Print</a>
 
@@ -64,8 +64,8 @@
                                 <td scope="row">{{$i++}}</td>
                                 <td>{{ $socialsecurity->month }}</td>
                                 <td>{{ $socialsecurity->staff->ssnit_number}}</td>
-                                <td>{{ $socialsecurity->staff->last_name }} {{ $socialsecurity->staff->first_name }}</td>
-                                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $socialsecurity->month)->format('M') }}</td>
+                                <td>{{ $socialsecurity->staff->first_name }} {{ $socialsecurity->staff->last_name }}</td>
+                                <td>{{ $socialsecurity->month}}</td>
                                 <td>{{ $socialsecurity->year }}</td>
                                 <td>{{ $socialsecurity->basic_salary }}</td>
                                 <td>{{ $socialsecurity->employer_contribution }}</td>

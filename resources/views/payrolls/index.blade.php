@@ -18,7 +18,7 @@
                 <div class="query">
 
                     <a href="{{route('payrolls.create')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">add</span>  Add Pay Details</a>
-                    <a href="#" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">list_alt</span>  Get Payroll</a>
+                    <a href="{{ route('payroll.report') }}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">list_alt</span>  Get Payroll</a>
                     <a href="{{route('staff.index')}}" class="text-btn" style="text-decoration: none;"><span class="material-icons-outlined">badge</span>  Staff List</a>
                     <a href="#" class="button-green" style="text-decoration: none; padding-left: 10px; padding-right: 12px; padding-top: 5px; padding-bottom: 5px;" onclick="printContent();"><span class="material-icons-outlined">print</span> Print</a>
 
@@ -54,7 +54,7 @@
                                 <td scope="row">{{$i++}}</td>
                                 <td>{{ $payroll->staff->staff_no }}</td>
                                 <td>{{ $payroll->staff->last_name }} {{ $payroll->staff->first_name }}</td>
-                                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $payroll->month)->format('M') }}</td>
+                                <td>{{ $payroll->month }}</td>
                                 <td>{{ $payroll->basic_salary }}</td>
                                 <td>{{ $payroll->allowances }}</td>
                                 <td>{{ $payroll->gross_salary}}</td>

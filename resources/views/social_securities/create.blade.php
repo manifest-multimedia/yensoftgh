@@ -26,6 +26,13 @@
                 <h3 class="-">Contribution Detials</h3>
                 <a href="{{route('social-securities.index')}}" class="button product-button"><span class="material-icons-outlined">arrow_back</span></a>
             </div>
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger">{{ session('erro') }}</div>
+                @endif
                 <form action="{{ route('social-securities.store') }}" method="POST">
                     @csrf
 
@@ -59,7 +66,7 @@
 
                                 <div class="card-input">
                                     <label for="">Month</label>
-                                    <input type="date" id="month" class="@error('month') is-invalid @enderror" name="month" value="<?php echo date('Y-m-d'); ?>" required>
+                                    <input type="month" id="month" class="@error('month') is-invalid @enderror" name="month" value="<?php echo date('Y-m-d'); ?>" required>
                                     @error('month')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

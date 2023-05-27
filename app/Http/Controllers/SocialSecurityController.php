@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\SocialSecurity;
 use App\Models\Staff;
+use Illuminate\Support\Facades\DB;
 class SocialSecurityController extends Controller
 {
         /**
@@ -102,6 +104,33 @@ class SocialSecurityController extends Controller
 
         return redirect()->route('social-securities.index')
                         ->with('success', 'Social Security record deleted successfully')->with('display_time', 3);
+    }
+
+    public function generateReport(Request $request)
+    {
+        return view('social_securities.query', );
+    }
+
+
+    public function generate(Request $request)
+    {
+        $month = $request->input('month');
+
+        $year = DB::table('social_securities')
+            ->select('year')
+            ->first()
+            ->year;
+
+            $contributions = DB::table('social_securities')
+            ->join('staff', 'social_securities.staff_id', '=', 'staff.id')
+            ->select('social_securities.*', 'staff.first_name as firstname','staff.last_name as last_name','staff.staff_no as staff_no' ) // Adjust column name
+            ->where('month', $month)
+            ->get();
+
+        // Fetch school details from school_setting table
+        $schoolDetails = DB::table('school_settings')->first();
+
+        return view('social_securities.report', compact('contributions', 'month', 'year', 'schoolDetails'));
     }
 
 }

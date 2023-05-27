@@ -7,7 +7,7 @@
 @section('content')
 <main class="main-container">
     <div class="main-title text-secondary">
-        <h2>Report Cards</h2>
+        <h2>Generate Report Cards</h2>
         <a href="{{route('exams.index')}}" class="button product-button"><span class="material-icons-outlined">arrow_back</span></a>
     </div>
 

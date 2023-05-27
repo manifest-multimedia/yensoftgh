@@ -7,6 +7,7 @@ use App\Models\Payroll;
 use App\Models\Staff;
 use App\Models\StaffTax;
 use App\Models\SocialSecurity;
+use Illuminate\Support\Facades\DB;
 
 class PayrollController extends Controller
 {
@@ -144,4 +145,35 @@ class PayrollController extends Controller
 
         return redirect('/payrolls')->with('success', 'Payroll information has been deleted successfully.')->with('display_time', 3);
     }
+
+
+    public function generateReport(Request $request)
+    {
+        return view('payrolls.query', );
+    }
+
+
+    public function generate(Request $request)
+    {
+        $month = $request->input('month');
+
+        $year = DB::table('payrolls')
+            ->select('year')
+            ->first()
+            ->year;
+
+            $contributions = DB::table('payrolls')
+            ->join('staff', 'payrolls.staff_id', '=', 'staff.id')
+            ->select('payrolls.*', 'staff.first_name as firstname','staff.last_name as last_name','staff.staff_no as staff_no' ) // Adjust column name
+            ->where('month', $month)
+            ->get();
+           // dd($month, $year, $contributions);
+
+        // Fetch school details from school_setting table
+        $schoolDetails = DB::table('school_settings')->first();
+
+        return view('payrolls.report', compact('contributions', 'month', 'year', 'schoolDetails'));
+    }
+
+
 }

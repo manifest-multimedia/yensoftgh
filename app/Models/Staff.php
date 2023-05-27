@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+
 class Staff extends Model
 {
     use HasFactory;
@@ -46,6 +47,7 @@ class Staff extends Model
             $staff->staff_no = $newSerialId;
         });
     }
+
 
     public function department()
     {
