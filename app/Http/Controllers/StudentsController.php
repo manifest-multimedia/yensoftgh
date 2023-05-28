@@ -116,7 +116,7 @@ class StudentsController extends Controller
         }
 
         // Move the new image file to the 'public/assets/photo' directory
-        $newFileName = $student->serial_id . '.png';
+        $newFileName = $student->serial_id . '_' . time() . '.png';
         $newImagePath = $request->file('photo')->move(public_path('assets/photo'), $newFileName);
 
         // Update the student record

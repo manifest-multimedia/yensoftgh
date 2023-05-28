@@ -4,33 +4,34 @@ var sidebarOpen = false;
 var sidebar = document.getElementById("sidebar");
 
 function openSidebar() {
-  if(!sidebarOpen) {
-    sidebar.classList.add("sidebar-responsive");
-    sidebarOpen = true;
-  }
+    if (!sidebarOpen) {
+        sidebar.classList.add("sidebar-responsive");
+        sidebarOpen = true;
+    }
 }
 
 function closeSidebar() {
-  if(sidebarOpen) {
-    sidebar.classList.remove("sidebar-responsive");
-    sidebarOpen = false;
-  }
+    if (sidebarOpen) {
+        sidebar.classList.remove("sidebar-responsive");
+        sidebarOpen = false;
+    }
 }
 
 
 
 //DELETE
-    function confirmDelete(levelId, levelName) {
+function confirmDelete(levelId, levelName) {
     if (confirm("Are you sure you want to delete " + levelName + "?")) {
         var form = document.getElementById('deleteLevelForm' + levelId);
         form.submit();
-        }
     }
+}
 
 
-    const studentsTableBody = document.getElementById('studentsTableBody');
-    const searchInput = document.getElementById('searchInput');
+const studentsTableBody = document.getElementById('studentsTableBody');
+const searchInput = document.getElementById('searchInput');
 
+if (searchInput) {
     searchInput.addEventListener('input', () => {
         const searchQuery = searchInput.value.trim().toLowerCase();
         const rows = studentsTableBody.getElementsByTagName('tr');
@@ -45,21 +46,21 @@ function closeSidebar() {
             }
         }
     });
+}
+
+function printContent() {
+    var printContents = document.querySelector('.big-card').innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+}
 
 
-    function printContent() {
-        var printContents = document.querySelector('.big-card').innerHTML;
-        var originalContents = document.body.innerHTML;
-
-        document.body.innerHTML = printContents;
-
-        window.print();
-
-        document.body.innerHTML = originalContents;
-    }
-
-
-    function openTab(evt, cityName) {
+function openTab(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -71,4 +72,4 @@ function closeSidebar() {
     }
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
-    }
+}
