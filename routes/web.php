@@ -52,8 +52,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
-
 // Protected by the 'auth' middleware, meaning only authenticated users can access these routes
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -157,7 +155,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/archive/{student}', [ArchiveController::class, 'update'])->name('archived.update');
 
         Route::get('admin', function () {
-            return view('admin');
+            return redirect()->route('dashboard.index');
         })->name('admin')->middleware('disableback');
     });
 

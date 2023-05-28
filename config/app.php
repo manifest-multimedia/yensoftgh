@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Yensoft SchoolDB'),
+    'mail_sender' => env('MAIL_FROM_ADDRESS', 'notifications@yensoftgh.com'),
 
     /*
     |--------------------------------------------------------------------------

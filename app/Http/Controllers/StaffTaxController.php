@@ -13,6 +13,7 @@ class StaffTaxController extends Controller
     public function index()
     {
         $staffTaxes = StaffTax::orderBy('created_at', 'desc')->get();
+
         return view('staff_taxes.index', compact('staffTaxes'));
     }
 

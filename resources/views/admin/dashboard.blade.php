@@ -26,28 +26,28 @@
                         <h3>Students</h3>
                         <span class="material-icons-outlined">account_box</span>
                     </div>
-                    <h2>{{ $students_count }}</h2>
+                    <h2>{{ $students_count ?? ''}}</h2>
                 </div>
                 <div class="card">
                     <div class="card-inner">
                         <h3>Budgeted</h3>
                         <span class="material-icons-outlined">sell</span>
                     </div>
-                    <h2>{{ $total_billings_amount }}</h2>
+                    <h2>{{ $total_billings_amount ?? ''}}</h2>
                 </div>
                 <div class="card">
                     <div class="card-inner">
                         <h3>Actual Collection</h3>
                         <span class="material-icons-outlined">history_edu</span>
                     </div>
-                    <h2>{{ $total_payments_amount }}</h2>
+                    <h2>{{ $total_payments_amount ?? ''}}</h2>
                 </div>
                 <div class="card">
                     <div class="card-inner">
                         <h3>Expenditure</h3>
                         <span class="material-icons-outlined">inventory</span>
                     </div>
-                    <h2>{{ $total_expenses_amount }}</h2>
+                    <h2>{{ $total_expenses_amount ?? ''}}</h2>
                 </div>
             </div>
             <div class="section">

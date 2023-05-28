@@ -21,7 +21,7 @@ class ClassScoreController extends Controller
         $terms = Term::all();
         $exams = Exam::all();
         $academic_years = AcademicYear::all();
-
+      
         return view('exams.class', compact('students','levels','subjects','terms','academic_years','exams'));
     }
 
