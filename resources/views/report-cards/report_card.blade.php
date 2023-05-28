@@ -144,6 +144,7 @@
 	</style>
 </head>
 <body>
+
     @foreach ($reportCards as $reportCard)
         <div class="report-card">
 
@@ -165,10 +166,6 @@
             <h4 style = "text-align: right;">Student Report</h4>
 
             <h3 style="text-align: center; text-decoration: upper; text-transform: uppercase;">End of Term Examination</h3>
-
-            @if ($contributions->isEmpty())
-                <p>No social security contributions found for the selected month and year.</p>
-            @else
 
             <table>
                 <tbody >
@@ -329,7 +326,7 @@
         </div>
 
     @endforeach
-    @endif
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
 
