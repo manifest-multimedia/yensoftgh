@@ -28,7 +28,7 @@ class NotificationEmail extends Mailable
         ->with([
             'data' => $this->data,
         ])
-        ->from('notificaions@yensoftgh.com', 'Yensoft DB');
+        ->from('notificaions@yensoftgh.com', 'Yensoft SchoolDB');
 
     }
 
