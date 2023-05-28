@@ -166,6 +166,10 @@
 
             <h3 style="text-align: center; text-decoration: upper; text-transform: uppercase;">End of Term Examination</h3>
 
+            @if ($contributions->isEmpty())
+                <p>No social security contributions found for the selected month and year.</p>
+            @else
+
             <table>
                 <tbody >
                 <thead >
@@ -325,6 +329,10 @@
         </div>
 
     @endforeach
+<<<<<<< HEAD
+=======
+    @endif
+>>>>>>> parent of 4484634 (Fix errors on the repor card)
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
 
