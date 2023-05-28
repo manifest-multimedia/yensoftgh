@@ -144,7 +144,6 @@
 	</style>
 </head>
 <body>
-
     @foreach ($reportCards as $reportCard)
         <div class="report-card">
 
@@ -326,7 +325,6 @@
         </div>
 
     @endforeach
-
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
 
