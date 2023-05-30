@@ -43,7 +43,7 @@
 	<footer>
 	<div class="footer-container">
 		<div class="left">
-		<a href="{{ route('privacy_policy') }}">Privacy Policy</a> | <a href="{{ route('privacy_policy') }}">Terms of use</a>
+		<a href="{{ route('privacy_policy') }}">Privacy Policy</a> | <a href="{{ route('terms_of_use') }}">Terms of use</a>
 		</div>
 		<div class="right">
 		&copy; {{date('Y')}} Yensoft

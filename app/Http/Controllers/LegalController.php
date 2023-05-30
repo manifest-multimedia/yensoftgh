@@ -10,4 +10,12 @@ class LegalController extends Controller
     {
         return view('legal.privacy_policy');
     }
+
+    public function terms_of_use()
+    {
+        return view('legal.terms_of_use');
+    }
 }
+
+
+

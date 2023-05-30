@@ -239,6 +239,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('report-comments/{id}', [ReportCommentController::class, 'delete'])->name('comment.delete');
 
         Route::get('privacy_policy', [LegalController::class, 'privacy_policy'])->name('privacy_policy');
+        Route::get('terms_of_use', [LegalController::class, 'terms_of_use'])->name('terms_of_use');
 
     });
 
