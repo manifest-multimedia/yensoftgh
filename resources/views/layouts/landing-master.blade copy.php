@@ -84,7 +84,7 @@
                                     <li class="nav-item active">
                                         <a class="page-scroll" href="#home">Home</a>
                                     </li>
-                 <!--                     <li class="nav-item">
+                                    <li class="nav-item">
                                         <a class="page-scroll" href="#features">Features</a>
                                     </li>
                                     <li class="nav-item">
@@ -93,12 +93,12 @@
                                     <li class="nav-item">
                                         <a class="page-scroll" href="#facts">Why</a>
                                     </li>
-                                  <li class="nav-item">
+                                <!--    <li class="nav-item">
                                         <a class="page-scroll" href="#team">Team</a>
-                                    </li>
+                                    </li>-->
                                     <li class="nav-item">
                                         <a class="page-scroll" href="#blog">Blog</a>
-                                    </li> -->
+                                    </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
 

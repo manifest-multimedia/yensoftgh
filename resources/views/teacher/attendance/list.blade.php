@@ -49,7 +49,7 @@
                 </table>
 
                 <br>
-
+                <br>
                 <div style="display: flex; justify-content: center;">
                     <a href="{{route('get_attendance.index')}}" class="text_btn_outlined">Close</a>
                 </div>

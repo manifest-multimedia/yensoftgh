@@ -8,6 +8,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamScoreController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ReportCardController;
 use App\Http\Controllers\ReportCommentController;
 use App\Http\Controllers\SmsController;
@@ -33,6 +34,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PromotionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -235,6 +237,8 @@ Route::middleware('auth')->group(function () {
         Route::get('report-comments/{id}', [ReportCommentController::class, 'index'])->name('comment.edit');
         Route::put('report-comments/{id}', [ReportCommentController::class, 'update'])->name('comment.update');
         Route::delete('report-comments/{id}', [ReportCommentController::class, 'delete'])->name('comment.delete');
+
+        Route::get('privacy_policy', [LegalController::class, 'privacy_policy'])->name('privacy_policy');
 
     });
 

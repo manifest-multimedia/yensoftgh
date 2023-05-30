@@ -45,6 +45,7 @@
                 </tbody>
             </table>
                 <br>
+                <br>
 
                 <div style="display: flex; justify-content: center;">
                     <a href="{{ route('attendance_report.index') }}" class="text-btn">Reset</a> &nbsp;
