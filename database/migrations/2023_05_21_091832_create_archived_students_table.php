@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('district')->nullable();
             $table->string('region')->nullable();
             $table->string('parent_name')->nullable();
+            $table->unsignedInteger('parent_id')->nullable(); 
             $table->bigInteger('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('lastschool')->nullable();
@@ -36,6 +37,7 @@ return new class extends Migration
             $table->unsignedBigInteger('exemption')->default(1); //1-none, 2-full, 3-partial
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('set null');
             $table->foreign('lastclass')->references('id')->on('levels')->onDelete('set null');
+            $table->foreign('parent_id')->references('id')->on('parents')->onDelete('set null');
             $table->timestamps();
 
         });

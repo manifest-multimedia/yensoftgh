@@ -7,9 +7,12 @@ use App\Models\Billing;
 use App\Models\Payment;
 use App\Models\Students;
 use App\Models\Levels;
+use App\Models\Guardian;
 use App\Http\Requests\StoreStudentsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 
 class StudentsController extends Controller
@@ -46,7 +49,6 @@ class StudentsController extends Controller
      */
     public function store(StoreStudentsRequest $request)
     {
-
         $this->validate($request, [
             'surname' => 'required|max:50',
             'othername' => 'required|max:100',
@@ -54,27 +56,58 @@ class StudentsController extends Controller
             'parent_name' => 'required',
             'lastclass' => 'required',
             'level_id' => 'required|exists:levels,id',
-        ],[
-            'surname.required'=>'Please enter surname',
-            'surname.max'=>'You have entered to many characters',
-            'othername.required'=>'Please enter other names',
-            'othername.max'=>'You have entered to many characters',
-            'dob.required'=>'Please enter the date of birth',
-            'dob.date'=>'Entered a valid date',
-            'parent_name.required'=>'Please enter parent/guardian name',
-            'lastclass.required'=>'Please enter previous class of student',
-            'level_id.required'=>'Please enter current class of student',
-            'level_id.exists'=>'Please enter current class of student',
+        ], [
+            'surname.required' => 'Please enter the surname',
+            'surname.max' => 'You have entered too many characters',
+            'othername.required' => 'Please enter other names',
+            'othername.max' => 'You have entered too many characters',
+            'dob.required' => 'Please enter the date of birth',
+            'dob.date' => 'Please enter a valid date',
+            'parent_name.required' => 'Please enter the parent/guardian name',
+            'lastclass.required' => 'Please enter the previous class of the student',
+            'level_id.required' => 'Please enter the current class of the student',
+            'level_id.exists' => 'Please enter a valid current class of the student',
         ]);
-
+    
         $input = $request->all();
+            
+        // Check if the parent exists
+        $parent = Guardian::where(DB::raw("CONCAT(first_name, ' ', last_name)"), $input['parent_name'])
+            ->where('phone', $input['phone'])
+            ->first();
 
+        if (!$parent) {
+            // Parent does not exist, create a guardian record
+
+            // Separate the parent_name into first_name and last_name
+            $parentNameParts = explode(' ', $input['parent_name']);
+            $firstName = $parentNameParts[0];
+            $lastName = isset($parentNameParts[1]) ? $parentNameParts[1] : '';
+
+            // Create the guardian record
+            $guardian = Guardian::create([
+                'first_name' => $firstName,
+                'last_name' => $lastName,   
+                'phone' => $input['phone'],
+                'email' => $input['email'],
+                'user_id' => $input['user_id'],
+            ]);
+            
+            //dd($guardian);
+
+            $input['parent_id'] = $guardian->id;
+
+            generateStudentGuardianCredentials($guardian->email, $firstName, $lastName);
+
+        } else {
+            $input['parent_id'] = $parent->id;
+        }
+
+        // Create the student record
         Students::create($input);
 
-        return redirect()->route('students.index')->with('success', 'New student enrolment completed successfully.')->with('display_time', 3);
-
+        return redirect()->route('students.index')->with('success', 'New student enrollment completed successfully.')->with('display_time', 3);
     }
-
 
     public function show(Students $student)
     {
@@ -133,8 +166,9 @@ class StudentsController extends Controller
     {
         $student = Students::find($id);
         $levels = Levels::all();
+        $parents = Guardian::all();
 
-        return view('students.edit', compact('student','student','levels','levels'));
+        return view('students.edit', compact('student','levels','parents'));
 
     }
 
@@ -173,6 +207,7 @@ class StudentsController extends Controller
         $student->district = $request->district;
         $student->region = $request->region;
         $student->parent_name = $request->parent_name;
+        $student->parent_id = $request->parent_id;
         $student->phone = $request->phone;
         $student->address = $request->address;
         $student->lastschool = $request->lastschool;

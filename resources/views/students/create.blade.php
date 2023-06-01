@@ -30,6 +30,7 @@
                                     <div class="fields">
                                         <div class="input-field">
                                             <label for="">Surname</label>
+                                            <input hidden type="text" value="{{ auth()->user()->id }}" name="user_id" id="user_id" required>
                                             <input type="text" name="surname" class="@error('surname') is-invalid @enderror" id="surname" placeholder="Enter surname">
                                             @error('surname')
                                             <div class="error-message">
@@ -168,6 +169,19 @@
                                                 </div>
                                                 @enderror
                                             </div>
+
+                                            <div class="input-field">
+                                                <label for="">Email</label>
+                                                <input type="email" class="@error('email') is-invalid @enderror" name="email" id="email" placeholder="Enter email number">
+                                                @error('email')
+                                                <div class="error-message">
+                                                    <span class="text-danger text-left" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                </div>
+                                                @enderror
+                                            </div>
+
 
                                             <div class="input-field">
                                                 <label for="">Postal Address</label>

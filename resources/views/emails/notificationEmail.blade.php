@@ -102,7 +102,7 @@
     <div class="container">
         <div class="header">
        <!--     <h1>Yensoft SchoolDB</h1> -->
-            <img src="http://127.0.0.1:8000/assets/img/logo2.png" alt="Yensoft SchoolDB">
+            <img src="{{ asset('assets/img/logo2.png') }}" alt="Yensoft SchoolDB">
         </div>
 
         <div class="content">

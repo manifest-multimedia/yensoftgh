@@ -37,6 +37,7 @@ class Students extends Model
                 $archivedStudent->region = $student->region;
                 $archivedStudent->parent_name = $student->parent_name;
                 $archivedStudent->phone = $student->phone;
+                $archivedStudent->parent_id = $student->parent_id;
                 $archivedStudent->address = $student->address;
                 $archivedStudent->lastschool = $student->lastclass;
                 $archivedStudent->photo = $student->photo;
@@ -93,7 +94,7 @@ class Students extends Model
         'hometown','district','region',
         'parent_name', 'phone', 'address',
         'lastschool', 'lastclass',
-        'level_id',
+        'level_id', 'parent_id',
 
     ];
     protected $table = 'students';
@@ -146,5 +147,9 @@ class Students extends Model
         return $this->hasMany(Attendance::class, 'student_id');
     }
 
+    public function guardian()
+    {
+        return $this->belongsTo(Guardian::class, 'parent_id', 'id');
+    }
 }
 

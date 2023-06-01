@@ -150,17 +150,41 @@
                                         <span class="title">Parent/Guardian Details</span>
 
                                         <div class="fields">
+
                                             <div class="input-field">
-                                                <label for="">Name</label>
-                                                <input type="text" class="@error('parent_name') is-invalid @enderror"
-                                                    value="{{ $student->parent_name }}" name="parent_name" id="parent_name" placeholder="Enter name of parent/guardian">
-                                                @error('parent_name')
-                                                <div class="error-message">
-                                                    <span class="text-danger text-left" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                </div>
-                                                @enderror
+                                                <label for="parent">Name</label>
+
+                                                <select name="" id="parent_select">
+                                                    @if ($student->guardian === null)
+                                                        <option value="">Select parent</option> <!-- Display "Select parent" only if no parent record exists -->
+                                                    @else
+                                                        <option value="{{ $student->parent_id }}" selected>{{ $student->guardian->first_name }} {{ $student->guardian->last_name }}</option>
+                                                    @endif
+                                                
+                                                    @foreach($parents as $parent)
+                                                        <option value="{{ $parent->id }}">{{ $parent->first_name }} {{ $parent->last_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                
+                                                <input type="hidden" name="parent_id" id="selected_parent_id">
+                                                <input type="hidden" name="parent_name" id="selected_parent_full_name">
+                                                
+                                                <script>
+                                                    $(document).ready(function() {
+                                                        $('#parent_select').select2({
+                                                            placeholder: 'Search parents',
+                                                            width: '100%'
+                                                        }).on('change', function() {
+                                                            var selectedParentId = $(this).val();
+                                                            var selectedParentFullName = $(this).find(':selected').text();
+                                                            
+                                                            $('#selected_parent_id').val(selectedParentId);
+                                                            $('#selected_parent_full_name').val(selectedParentFullName);
+                                                        });
+                                                    });
+                                                </script>
+                                                                                   
+                                                
                                             </div>
 
                                             <div class="input-field">

@@ -34,6 +34,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\GuardianController;
 
 
 /*
@@ -76,6 +77,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('taxes', TaxController::class);
         Route::resource('staff_taxes', StaffTaxController::class);
         Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard.index');
+        Route::resource('parents', GuardianController::class);
 
         //REPORTS ROUTES ===== social security
         Route::get('/social-security/report', [SocialSecurityController::class, 'generateReport'])->name('social-securities.report');

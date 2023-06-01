@@ -134,7 +134,7 @@ class AdminController extends Controller
                  DB::raw('SUM(CASE WHEN gender = 2 THEN 1 ELSE 0 END) as females'),
                  DB::raw('count(*) as total'))
         ->groupBy('levels.name')
-        //->orderBy('levels.id', 'asc')
+        ->orderBy('levels.id', 'asc')
         ->get();
 
         $students_count = DB::table('students')->count();

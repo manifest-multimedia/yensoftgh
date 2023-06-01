@@ -20,7 +20,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    
 
 </head>
 
@@ -83,6 +86,8 @@
                             class="material-icons-outlined">dashboard</span> Dashboard</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('students.index') }}"><span
                             class="material-icons-outlined">account_box</span> Students</a></li>
+                <li class="sidebar-list-item"><a href="{{ route('parents.index') }}"><span
+                            class="material-icons-outlined">people</span> Manage Parents</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('academy') }}"><span
                             class="material-icons-outlined">bungalow</span> Academy</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('exercises.index') }}"><span
