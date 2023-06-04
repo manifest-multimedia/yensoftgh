@@ -13,6 +13,7 @@ use App\Models\Exam;
 use App\Models\ClassScore;
 use App\Models\ExamScore;
 use App\Models\Message;
+use App\Models\ReportComment;
 
 
 use Illuminate\Http\Request;
@@ -387,5 +388,91 @@ class TeacherController extends Controller
         return redirect()->route('mes.index')->with('success', 'Message sent successfully!')->with('display_time', 3);
     }
 //
+
+/* ============================ ROUTES FOR TEACHER COMMENTS ON REPORT CARD =========================================== */
+    public function commnetIndex()
+    {
+        $comments = ReportComment::all();
+
+        return view('teacher.report_comment.index', compact('comments' ));
+    }
+
+    public function commentCreate(Request $request)
+    {
+        $terms = Term::all();
+        $levels = Levels::all();
+        $academic_years = AcademicYear::all();
+        $exams = Exam::all();
+
+        $user = $request->user(); // Assuming you have authentication in place
+        $teacherLevelId = $user->level_id;
+    
+        $students = Students::where('level_id', $teacherLevelId)
+        ->orderBy('surname', 'asc')
+        ->get();
+
+        return view('teacher.report_comment.create', compact('students','exams','levels', 'academic_years'));
+    }
+
+    public function commentStore(Request $request)
+    {
+        $this->validate($request, [
+
+            'student_id.*' => 'required|exists:students,id',
+            'level_id' => 'required|exists:levels,id',
+            'exam_id' => 'required|exists:exams,id',
+            'comment.*' => 'required', // Validate the score field
+
+        ]);
+
+        $level_id = $request->input('level_id');
+        $student_id = $request->input('student_id');
+        $exam_id = $request->input('exam_id');
+        $comments = $request->input('comment');
+        // Check if comments is not null
+        if ($comments !== null) {
+            // Loop through the scores and get the corresponding student ID
+            $student_ids = [];
+            foreach ($comments as $i => $comment) {
+                $student_ids[$i] = $request->input('student_id.'.$i);
+            }
+
+            // Insert the scores into the database
+            foreach ($student_ids as $i => $student_id) {
+                ReportComment::create([
+                    'student_id' => $student_id,
+                    'level_id' => $level_id,
+                    'exam_id' => $exam_id,
+                    'comment' => $comments[$i],
+                ]);
+            }
+
+            return redirect()->route('comment.index')->with('success', 'Comment saved successfully.')->with('display_time', 3);
+        }
+    }
+
+    public function commentUpdate(Request $request, $id)
+    {
+        // Validate the request data
+        $request->validate([
+            'comment' => 'required',
+            'student_id' => 'required|exists:students,id',
+            'level_id' => 'nullable|exists:levels,id',
+            'exam_id' => 'required|exists:exams,id',
+        ]);
+
+        // Find the report comment
+        $reportComment = ReportComment::findOrFail($id);
+
+        // Update the report comment
+        $reportComment->comment = $request->input('comment');
+        $reportComment->student_id = $request->input('student_id');
+        $reportComment->level_id = $request->input('level_id');
+        $reportComment->exam_id = $request->input('exam_id');
+        $reportComment->save();
+
+        // Return a response
+        return response()->json(['message' => 'Report comment updated successfully', 'data' => $reportComment]);
+    }
 
 }

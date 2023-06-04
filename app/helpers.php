@@ -8,30 +8,33 @@ use App\Mail\NotificationEmail;
 
 if(!function_exists('generateStaffCredentials'))
 {
-     function generateStaffCredentials($staff_email, $staff_firstname, $staff_lastname){
-        $password=generatePassword(8);
-        $encrypt=hash::make($password);
+    function generateStaffCredentials($staff_email, $staff_firstname, $staff_lastname)
+    {
+        $password = generatePassword(8);
+        $encrypt = Hash::make($password);
         $name = $staff_firstname . ' ' . $staff_lastname;
         $email = $staff_email;
-        $role=4;
-        $account=new User;
-        $account->name=$name;
-        $account->password=$encrypt;
-        $account->email=$email;
-        $account->role=$role;
-        $account->save();
-
-        $message="Password for your account is $password.";
-
+        $role = 2;
+    
+        $user = new User;
+        $user->name = $name;
+        $user->password = $encrypt;
+        $user->email = $email;
+        $user->role = $role;
+        $user->save();
+    
+        $message = "Password for your account is $password.";
+    
         $data = [
-            'email'=> $email,
+            'email' => $email,
             'name' => $name,
-            'subject' =>'Account Credentials',
+            'subject' => 'Account Credentials',
             'message' => $message,
         ];
-
+    
         Mail::to($data['email'])->send(new NotificationEmail($data));
-
+    
+        return $user;
     }
 
 }

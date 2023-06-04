@@ -26,7 +26,10 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('ssnit_number')->nullable();
             $table->string('id_card')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+            //$table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('department_id')->references('id')->on('departments');
             $table->timestamps();
         });

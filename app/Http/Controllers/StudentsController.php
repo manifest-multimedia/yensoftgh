@@ -6,6 +6,7 @@ use App\Models\ArchivedStudent;
 use App\Models\Billing;
 use App\Models\Payment;
 use App\Models\Students;
+use App\Models\User;
 use App\Models\Levels;
 use App\Models\Guardian;
 use App\Http\Requests\StoreStudentsRequest;
@@ -85,17 +86,21 @@ class StudentsController extends Controller
             $lastName = isset($parentNameParts[1]) ? $parentNameParts[1] : '';
 
             // Create the guardian record
+            $lastUserId = User::max('id');
+            $newUserId = $lastUserId + 1;
+    
+
             $guardian = Guardian::create([
                 'first_name' => $firstName,
                 'last_name' => $lastName,   
                 'phone' => $input['phone'],
                 'email' => $input['email'],
-                'user_id' => $input['user_id'],
+                'created_by' => $input['created_by'],
+                'user_id' => $newUserId,
             ]);
             
-            //dd($guardian);
 
-            $input['parent_id'] = $guardian->id;
+            $input['parent_id'] = $parent->id;
 
             generateStudentGuardianCredentials($guardian->email, $firstName, $lastName);
 

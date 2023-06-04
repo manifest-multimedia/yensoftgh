@@ -29,7 +29,7 @@
 
                                     <div class="fields">
 
-                                        <input hidden type="text" value="{{ auth()->user()->id }}" name="user_id" id="user_id" required>
+                                        <input hidden type="text" value="{{ auth()->user()->id }}" name="created_by" id="created_by" required>
 
                                         <div class="input-field">
                                             <label for="">First Name</label>

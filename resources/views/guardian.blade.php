@@ -16,7 +16,8 @@
 			<input type="search" name="search-box" placeholder="What you want to find" >
 		</div>
 		<div class="icon-container">
-			<a href="page2.html"><img src="{{(asset('assets/img/report.png'))}}" alt="enter marks"><span>Reports</span></a>
+			<a href="{{ route('student_attendance.index') }}"><img src="{{(asset('assets/img/attendance.png'))}}" alt="attendance"><span>Attendance</span></a>
+			<a href="page2.html"><img src="{{(asset('assets/img/report.png'))}}" alt="enter marks"><span>Results</span></a>
 			<a href="page1.html"><img src="{{(asset('assets/img/cedi.png'))}}" alt="attendance"><span>Bills & payments</span></a>
 			<a href="page3.html"><img src="{{(asset('assets/img/message.png'))}}" alt="msg"><span>Messages</span></a>
 			<a href="{{ route('profile.show', ['profile' => Auth::id()]) }}"><img src="{{(asset('assets/img/profileset.png'))}}" alt="update password"><span>Profile</span></a>

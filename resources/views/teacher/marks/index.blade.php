@@ -36,6 +36,12 @@
                             <a href="{{ route('class_scores.create') }}" class="text-btn-green">Class Score</a><br><br>
                             <p>Enter contineous assessment score of 30%</P>
                         </div>
+
+                        <div class="exam_info">
+                            <a href="{{ route('teacherComments.create') }}" class="text-btn-green">Comment on Reports</a><br><br>
+                            <p>Comment on students performance</P>
+                        </div>
+
                     </div>
                 </div>
 

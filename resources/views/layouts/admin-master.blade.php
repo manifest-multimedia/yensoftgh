@@ -80,14 +80,11 @@
                 </div>
             </div>
             <ul class="sidebar-list">
-                <li class="sidebar-list-item"><a href="{{ route('home') }}"><span
-                            class="material-icons-outlined">home</span> Home</a></li>
+
                 <li class="sidebar-list-item"><a href="{{ route('dashboard.index') }}"><span
                             class="material-icons-outlined">dashboard</span> Dashboard</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('students.index') }}"><span
                             class="material-icons-outlined">account_box</span> Students</a></li>
-                <li class="sidebar-list-item"><a href="{{ route('parents.index') }}"><span
-                            class="material-icons-outlined">people</span> Manage Parents</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('academy') }}"><span
                             class="material-icons-outlined">bungalow</span> Academy</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('exercises.index') }}"><span
@@ -98,12 +95,14 @@
                             class="material-icons-outlined">receipt_long</span> Bills & Payments</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('staff.index') }}"><span
                             class="material-icons-outlined">badge</span> Manage Staff</a></li>
-                <li class="sidebar-list-item"><a href="{{ route('messages.index') }}"><span
-                            class="material-icons-outlined">message</span> Messages</a></li>
+                <li class="sidebar-list-item"><a href="{{ route('parents.index') }}"><span
+                            class="material-icons-outlined">escalator_warning</span> Manage Parents</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('users.index') }}"><span
-                            class="material-icons-outlined">group</span> User Management</a></li>
+                            class="material-icons-outlined">group</span> Manage Users</a></li>
+                <li class="sidebar-list-item"><a href="{{ route('messages.index') }}"><span
+                    class="material-icons-outlined">message</span> Messages</a></li>
                 <li class="sidebar-list-item"><a href="{{ route('school.profile') }}"><span
-                            class="material-icons-outlined">settings</span> School Profile</a></li>
+                        class="material-icons-outlined">settings</span> School Profile</a></li>
             </ul>
             <ul class="sidebar-list logout">
                 <li class="sidebar-list-item">

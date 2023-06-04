@@ -53,14 +53,14 @@
                                     <a href="{{ route('parents.show', $parent) }}" lable="view"><span class="material-icons-outlined">account_box</span></a>&nbsp;&nbsp;
                                     <a href="{{ route('parents.edit', $parent) }}"><span class="material-icons-outlined">edit</span></a>&nbsp;&nbsp;
 
-                            <a href="{{route('parents.destroy', $parent)}}" class="formSubmit" id="formSubmit" type="submit"
-                                onclick="event.preventDefault(); confirmDelete({{ $parent }}, '{{ $parent->first_name }} {{ $parent->last_name }}');">
-                                <span class="material-icons-outlined">delete</span>
-                            </a>
-                            <form id="deleteLevelForm{{ $parent }}" action="{{route('staff.destroy', $parent)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                            </form>
+                                    <a href="{{ route('parents.destroy', $parent->id) }}" class="formSubmit" id="formSubmit" type="submit"
+                                    onclick="event.preventDefault(); confirmDelete({{ $parent->id }}, '{{ $parent->first_name }} {{ $parent->last_name }}');">
+                                    <span class="material-icons-outlined">delete</span>
+                                </a>
+                                <form id="deleteLevelForm{{ $parent->id }}" action="{{ route('parents.destroy', $parent->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                                 </div>
                             </td>
                         </tr>

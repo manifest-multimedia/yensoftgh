@@ -40,13 +40,16 @@
                 <td>
                     <div class="table-action">
                       &nbsp;&nbsp;
-                      <a href="{{route('users.show', $user->id)}}" lable="view"><span class="material-icons-outlined">account_box</span></a>&nbsp;&nbsp;
-                      <a href="{{route('users.edit', $user->id)}}" class=""><span class="material-icons-outlined">edit</span></a>&nbsp;&nbsp;
+                        <a href="{{route('users.show', $user->id)}}" lable="view"><span class="material-icons-outlined">account_box</span></a>&nbsp;&nbsp;
+                        <a href="{{route('users.edit', $user->id)}}" class=""><span class="material-icons-outlined">edit</span></a>&nbsp;&nbsp;
 
-                        <form action="{{route('users.destroy', $user->id)}}" method="POST" id="deleteForm">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <a href="#delete" class="formSubmit" id="formSubmit" type="submit" onclick="event.preventDefault(); confirmDelete()"><span class="material-icons-outlined">delete</span></a>
+                        <a href="{{route('users.destroy', $user->id)}}" class="formSubmit" id="formSubmit" type="submit"
+                            onclick="event.preventDefault(); confirmDelete({{ $user->id }}, '{{ $user->name }}');">
+                            <span class="material-icons-outlined">delete</span>
+                        </a>
+                        <form id="deleteLevelForm{{ $user->id }}" action="{{route('users.destroy', $user->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
                         </form>
 
                     </div>
@@ -55,7 +58,7 @@
         @endforeach
         <tfoot>
             <tr>
-            <td colspan="7">
+            <td colspan="5">
                 {{ $users->links('pagination.custom') }}
             </td>
             </tr>

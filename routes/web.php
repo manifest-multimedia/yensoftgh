@@ -35,7 +35,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\GuardianController;
-
+use App\Http\Controllers\ParentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -183,6 +183,15 @@ Route::middleware('auth')->group(function () {
                 Route::get('class_score/create', [TeacherController::class, 'cscoreCreate']) ->name('class_scores.create');
                 Route::post('/class_scores', [TeacherController::class, 'cscoreStore'])->name('class_scores.store');
 
+
+                //Report card comments routes
+                Route::get('/comments', [TeacherController::class, 'commnetIndex'])->name('teacherComments.index');
+                Route::get('/comments/create', [TeacherController::class, 'commentCreate'])->name('teacherComments.create');
+                Route::post('/comments', [TeacherController::class, 'commentStore'])->name('teacherComments.store');
+                Route::get('/comments/{id}/edit', [TeacherController::class, 'commentEdit'])->name('teacherComments.edid');
+                Route::put('/comments/{id}/update', [TeacherController::class, 'commentUpdate'])->name('teacherComments.update');
+
+
                 //Messages
                 Route::get('/message', [TeacherController::class, 'meSindex'])->name('mes.index');
                 Route::get('/message/create', [TeacherController::class, 'meScreate'])->name('mes.create');
@@ -198,6 +207,12 @@ Route::middleware('auth')->group(function () {
     // Protected by the 'guardian' middleware, meaning only users with the 'guardian' role can access these routes
     Route::middleware('guardian')->group(function () {
 
+                //Attendance
+                Route::get('/student_attendance', [ParentController::class, 'attendanceIndex'])->name('student_attendance.index');
+                Route::get('/student_attendance/{student}/events', [ParentController::class, 'getAttendanceEvents'])->name('attendance.events');
+
+
+
         Route::get('guardian', function () {
             return view('guardian');
         })->name('guardian')->middleware('disableback');
@@ -205,6 +220,7 @@ Route::middleware('auth')->group(function () {
 
     // Protected by the 'user' middleware, meaning only users with the 'user' role can access these routes
     Route::middleware('user')->group(function () {
+
 
         Route::get('user', function () {
             return view('user');
@@ -245,4 +261,4 @@ Route::middleware('auth')->group(function () {
 
     });
 
-});
+}); 

@@ -30,6 +30,7 @@ class Staff extends Model
         'phone_number',
         'ssnit_number',
         'user_id',
+        'created_by',
         'id_card',
     ];
 
@@ -65,4 +66,6 @@ class Staff extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    
 }

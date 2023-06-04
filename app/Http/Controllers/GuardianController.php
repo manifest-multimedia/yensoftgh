@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Guardian;
 use App\Models\Students;
+use App\Models\User;
 use App\Models\ArchivedStudent;
 
 class GuardianController extends Controller
@@ -22,7 +23,9 @@ class GuardianController extends Controller
 
     public function store(Request $request)
     {
-        
+        $lastUserId = User::max('id');
+        $newUserId = $lastUserId + 1;
+
         $guardian = new Guardian;
         $guardian->first_name = $request->first_name;
         $guardian->last_name = $request->last_name;
@@ -30,7 +33,8 @@ class GuardianController extends Controller
         //$guardian->date_of_birth = $request->date_of_birth;
         $guardian->email = $request->email;
         $guardian->phone = $request->phone;
-        $guardian->user_id = $request->user_id;
+        $guardian->user_id = $newUserId;
+        $guardian->created_by = $request->created_by;
         $guardian->save();
 
         generateGuardianCredentials($request->email, $request->first_name, $request->last_name);
@@ -68,11 +72,11 @@ class GuardianController extends Controller
         return redirect()->route('parents.index')->with('success', 'Parent updated successfully.')->with('display_time', 3);
     }
 
-    public function destroy($id)
+    public function destroy(string $parent)
     {
-        $guardian = Guardian::find($id);
+        $guardian = Guardian::findOrFail($parent);
         $guardian->delete();
 
-        return redirect()->route('parents.index')->with('success', 'Parent deleted successfully.');
+        return redirect()->route('parents.index')->with('success', 'Parent deleted successfully.')->with('display_time', 3);
     }
 }

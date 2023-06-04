@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departments;
+use App\Models\User;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 
@@ -32,8 +33,13 @@ class StaffController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    function store(Request $request)
     {
+        // Retrieve the last ID from the "users" table
+        $lastUserId = User::max('id');
+        $newUserId = $lastUserId + 1;
+ 
+        // Create the staff record
         $staff = new Staff;
         $staff->first_name = $request->first_name;
         $staff->last_name = $request->last_name;
@@ -46,14 +52,17 @@ class StaffController extends Controller
         $staff->phone_number = $request->phone_number;
         $staff->address = $request->address;
         $staff->ssnit_number = $request->ssnit_number;
-        $staff->user_id = $request->user_id;
         $staff->id_card = $request->id_card;
+        $staff->created_by = $request->created_by;
+        $staff->user_id = $newUserId;
         $staff->save();
-
-        generateStaffCredentials($request->email, $request->first_name, $request->last_name);
-
+    
+        $user = generateStaffCredentials($request->email, $request->first_name, $request->last_name);
+    
+    
         return redirect()->route('staff.index')->with('success', 'Staff record saved successfully.')->with('display_time', 3);
     }
+ 
 
 
     public function edit(Request $request, $id)

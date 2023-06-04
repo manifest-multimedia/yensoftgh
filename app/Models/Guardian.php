@@ -18,7 +18,7 @@ class Guardian extends Model
         'gender',
         //'date_of_birth',
         'phone',
-        'user_id'
+        'user_id', 'created_by',
     ];
 
     // Define the relationship between Parent and Student
