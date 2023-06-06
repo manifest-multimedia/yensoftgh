@@ -69,9 +69,9 @@ class StudentsController extends Controller
             'level_id.required' => 'Please enter the current class of the student',
             'level_id.exists' => 'Please enter a valid current class of the student',
         ]);
-    
+
         $input = $request->all();
-            
+
         // Check if the parent exists
         $parent = Guardian::where(DB::raw("CONCAT(first_name, ' ', last_name)"), $input['parent_name'])
             ->where('phone', $input['phone'])
@@ -88,7 +88,7 @@ class StudentsController extends Controller
             // Create the guardian record
             $lastUserId = User::max('id');
             $newUserId = $lastUserId + 1;
-    
+
 
             $guardian = Guardian::create([
                 'first_name' => $firstName,
@@ -98,7 +98,7 @@ class StudentsController extends Controller
                 'created_by' => $input['created_by'],
                 'user_id' => $newUserId,
             ]);
-            
+
 
             $input['parent_id'] = $parent->id;
 

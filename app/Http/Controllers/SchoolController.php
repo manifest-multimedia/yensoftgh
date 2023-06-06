@@ -42,7 +42,7 @@ class SchoolController extends Controller
         }
 
         // Move the new image file to the 'public/assets/photo' directory
-        $newFileName = $setting->abbre . '.png';
+        $newFileName = $setting->abbre . '_' . time() . '.png';
         $newImagePath = $request->file('photo')->move(public_path('assets/img'), $newFileName);
 
         // Update the student record
