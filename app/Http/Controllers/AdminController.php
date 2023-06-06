@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function index()
     {
         $users=User::paginate(50);
- 
+
         return view('users.index')->with('users',$users);
     }
 
@@ -129,11 +129,11 @@ class AdminController extends Controller
         //Students
         $students = DB::table('students')
         ->join('levels', 'students.level_id', '=', 'levels.id')
-        ->select('levels.name as level',
+        ->select('levels.name as level','levels.id',
                  DB::raw('SUM(CASE WHEN gender = 1 THEN 1 ELSE 0 END) as males'),
                  DB::raw('SUM(CASE WHEN gender = 2 THEN 1 ELSE 0 END) as females'),
                  DB::raw('count(*) as total'))
-        ->groupBy('levels.name')
+        ->groupBy('levels.name','levels.id')
         ->orderBy('levels.id', 'asc')
         ->get();
 
