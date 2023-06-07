@@ -92,7 +92,7 @@ class StudentsController extends Controller
 
             $guardian = Guardian::create([
                 'first_name' => $firstName,
-                'last_name' => $lastName,   
+                'last_name' => $lastName,
                 'phone' => $input['phone'],
                 'email' => $input['email'],
                 'created_by' => $input['created_by'],
@@ -100,7 +100,7 @@ class StudentsController extends Controller
             ]);
 
 
-            $input['parent_id'] = $parent->id;
+            $input['parent_id'] = $guardian->id;
 
             generateStudentGuardianCredentials($guardian->email, $firstName, $lastName);
 

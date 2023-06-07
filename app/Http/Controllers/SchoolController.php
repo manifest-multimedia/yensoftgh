@@ -24,6 +24,7 @@ class SchoolController extends Controller
     public function showProfile()
     {
         $settings = SchoolSettings::all();
+
         return view('school.show', compact('settings'));
 
     }
