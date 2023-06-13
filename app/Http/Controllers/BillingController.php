@@ -46,6 +46,17 @@ class BillingController extends Controller
 
     public function store(Request $request)
     {
+
+        $validatedData = $request->validate([
+            'students' => 'required',
+            'billing_date' => 'required|date',
+            'amount' => 'required|numeric',
+            'description' => 'required',
+            'user_id' => 'required',
+            'term' => 'required',
+            'academic_year_id' => 'required',
+        ]);
+
     $students = $request->input('students');
     $billing_date = $request->input('billing_date');
     $amount = $request->input('amount');

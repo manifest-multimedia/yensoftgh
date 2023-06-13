@@ -11,6 +11,8 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
+        <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/images/favicon.png') }}" type="image/png">
         <!--Custom CSS-->
         <link rel="stylesheet" href="{{(asset('assets/css/user.css'))}}">
 </head>

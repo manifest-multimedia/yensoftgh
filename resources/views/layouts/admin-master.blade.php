@@ -15,15 +15,17 @@
     <!--Icons-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
-
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/images/favicon.png') }}" type="image/png">
+    
     <!--Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    
+
 
 </head>
 

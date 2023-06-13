@@ -9,6 +9,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/images/favicon.png') }}" type="image/png">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">

@@ -19,6 +19,9 @@
                 <a href="{{route('billings.index')}}" class="button product-button"><span class="material-icons-outlined">arrow_back</span></a>
             </div>
 
+            <x-alert />
+
+
             <section class="">
 
                 <form method="POST" action="{{ route('billings.store') }}">

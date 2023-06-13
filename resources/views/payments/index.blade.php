@@ -61,15 +61,15 @@
                         @php    $i = 1;     @endphp @foreach($payments as $payment)
                             <tr>
                                 <td scope="row">{{$i++}}</td>
-                                <td>{{ $payment->serial_number }}</td>
-                                <td>{{ $payment->student->surname }} {{ $payment->student->othername }}</td>
+                                <td>{{ $payment->serial_number ?? ''}}</td>
+                                <td>{{ $payment->student->surname ?? ''}} {{ $payment->student->othername ?? ''}}</td>
                                 <td>{{ $payment->term }}</td>
-                                <td>{{ $payment->payment_date }}</td>
-                                <td>{{ $payment->amount }}</td>
-                                <td>{{ $payment->description }}</td>
+                                <td>{{ $payment->payment_date ?? ''}}</td>
+                                <td>{{ $payment->amount ?? ''}}</td>
+                                <td>{{ $payment->description ?? ''}}</td>
                                 <td>
                                     <div class="table-action">
-                                    <a href="{{ route('payments.show', $payment->payment_id) }}"><span class="material-icons-outlined">visibility</span></a>&nbsp;&nbsp;
+                                    <a href="{{ route('payments.show', $payment->payment_id) ?? ''}}"><span class="material-icons-outlined">visibility</span></a>&nbsp;&nbsp;
                                     </div>
                                 </td>
                             </tr>
