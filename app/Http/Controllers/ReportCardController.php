@@ -223,14 +223,14 @@ public function generate(Request $request)
 
         // Add the chart data to the report card array
         $reportCard['total_scores_chart_data'] = json_encode($totalScoresChartData);
-        $reportCard['highest_subject'] = $highestSubjectName;
-        $reportCard['overall_total'] = $overallTotal;
-        $reportCard['average_score'] = $averageScore;
-        $reportCard['class_size'] = $classSize;
-        $reportCard['class_size'] = $classSize;
-        $reportCard['total_days'] = $totalDays;
-        $reportCard['days_present'] = $daysPresent;
-        $reportCard['comments'] = $comments;
+        $reportCard['highest_subject'] = $highestSubjectName ?? '';
+        $reportCard['overall_total'] = $overallTotal ?? 0;
+        $reportCard['average_score'] = $averageScore ?? 0;
+        $reportCard['class_size'] = $classSize ?? 0;
+        $reportCard['class_size'] = $classSize ?? 0 ;
+        $reportCard['total_days'] = $totalDays ?? 0;
+        $reportCard['days_present'] = $daysPresent ?? 0;
+        $reportCard['comments'] = $comments ?? [];
 
         // Add the report card to the array of report cards
         $reportCards[] = $reportCard;
